@@ -24,6 +24,18 @@
 - [ ] Add remote: `git remote add origin <remote-url>`.
 - [ ] Push: `git push -u origin main`.
 
+## After publish: branch protection + iteration workflow (GitHub)
+- [ ] Enable branch protection on `main` (Settings → Branches):
+  - Require a pull request before merging.
+  - Require approvals (1 minimum).
+  - Require status checks to pass (enable CI when ready).
+  - Require conversation resolution.
+  - Restrict force-pushes and deletions.
+- [ ] Prefer PRs even for solo work (creates reviewable history and safer rollbacks).
+- [ ] Tag releases (e.g., `v0.1.0`) after stable milestones.
+- [ ] Use `CHANGELOG.md` for user-visible changes.
+- [ ] Keep `SECURITY.md` current and use GitHub Security Advisories if needed.
+
 ## Optional open-source hardening
 - [ ] Add `CODE_OF_CONDUCT.md`.
 - [ ] Add `CHANGELOG.md` or release notes guidance.
