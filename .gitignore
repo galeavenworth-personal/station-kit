@@ -8,6 +8,9 @@
 /.vscode/
 /.idea/
 
+# Local Kilo Code workspace artifacts
+/.kilocode/
+
 # Python tooling (if used by consumers)
 /.venv/
 /venv/

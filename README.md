@@ -57,8 +57,11 @@ Then replace `{{KFK_*}}` placeholders using the guidance in [`docs/CONFIG_REFERE
 - Schemas: [`docs/SCHEMAS.md`](docs/SCHEMAS.md:1)
 
 ## Credits and attribution
-This kit depends on the following open-source and documented tools, without which the factory design would not be possible:
+This kit is designed to be executed inside Kilo Code and assumes the following external components.
 
+See also: [`docs/CREDITS.md`](docs/CREDITS.md)
+
+- **Kilo Code** — https://kilo.ai/
 - **Beads** by Steve Yegge — https://github.com/steveyegge/beads
 - **MCP Sequential Thinking (fork)** by Arben Adm — https://github.com/arben-adm/mcp-sequential-thinking
 - **Augment Code MCP** — https://docs.augmentcode.com/context-services/mcp/overview
