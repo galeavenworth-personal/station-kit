@@ -1,15 +1,15 @@
 # Ecosystem and staged public exposure
 
-Kilo Factory Kit (KFK) is the **workflow + contract layer** for building complex systems with AI assistance.
+Station Kit (SK) is the **workflow + contract layer** for building complex systems with AI assistance.
 
 It exists for two reasons:
 
 1) **Career signal**: a self-contained blueprint of a modern software fabrication workflow.
 2) **Mental onramp**: a consistent operating model for building larger projects (repomap and Mimir) without re-deriving workflow discipline each time.
 
-## Mental onramp: recurring problems KFK standardizes
+## Mental onramp: recurring problems SK standardizes
 
-KFK standardizes the operational discipline that shows up repeatedly in real work:
+SK standardizes the operational discipline that shows up repeatedly in real work:
 
 1) **Multi-session continuity**
 - Explicit session import/export for prep and execution (see session export in [`templates/.kilocode/workflows/orchestrate-start-task.md`](../templates/.kilocode/workflows/orchestrate-start-task.md:299)).
@@ -30,9 +30,9 @@ KFK standardizes the operational discipline that shows up repeatedly in real wor
 5) **Supervised execution**
 - Parent tasks coordinate; subtasks do work; explicit STOP gates prevent uncontrolled implementation.
 
-## How KFK relates to repomap and Mimir
+## How SK relates to repomap and Mimir
 
-KFK is a public-facing kit extracted from dogfooding.
+SK is a public-facing kit extracted from dogfooding.
 
 ### repomap (MIT)
 
@@ -52,14 +52,14 @@ Mimir is a persistent executive agent with externalized state and long-term memo
 How it connects to the factory:
 
 - Mimir is a “multi-episode” system: it benefits from explicit contracts and disciplined handoffs.
-- KFK provides the workflow muscle memory to build systems like this without ad-hoc drift.
+- SK provides the workflow muscle memory to build systems like this without ad-hoc drift.
 
 License posture: PolyForm Noncommercial 1.0.0 — https://polyformproject.org/licenses/noncommercial/1.0.0/
 
 ## Staged public exposure plan (recommended)
 
 1) **First public drop**
-- KFK (MIT)
+- SK (MIT)
 - repomap (MIT)
 
 2) **Second drop (selective)**
@@ -67,6 +67,6 @@ License posture: PolyForm Noncommercial 1.0.0 — https://polyformproject.org/li
 - Keep advanced cognitive internals gated until the story is ready
 
 3) **Ongoing**
-- Keep KFK stable as the workflow reference.
+- Keep SK stable as the workflow reference.
 - Keep repomap evolving as the deterministic measurement jig.
 - Keep Mimir evolving as the persistent executive mind.

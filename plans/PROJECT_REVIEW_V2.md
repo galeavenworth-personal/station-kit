@@ -1,4 +1,4 @@
-# Project Review V2: Kilo Factory Kit (updated repo)
+# Project Review V2: Station Kit (updated repo)
 
 Scope reviewed: public-facing docs + template assets under [`templates/`](templates/:1).
 
@@ -9,7 +9,7 @@ The repository now reads as a largely self-contained **template kit** with a coh
 The biggest remaining “public share” risks are:
 
 1. **Broken repo-relative links** due to an extra `kilo-factory-kit/` prefix in docs.
-2. **Config/documentation drift**: templates use `{{KFK_*}}` placeholders that are not fully documented.
+2. **Config/documentation drift**: templates use `{{SK_*}}` placeholders that are not fully documented.
 3. **Org-specific language/paths** leaking through in templates (e.g., “repomap project”, personal clone paths).
 
 If those are addressed, the kit becomes very easy to evaluate and trust quickly.
@@ -41,15 +41,15 @@ This is the highest-confidence, highest-impact issue because it breaks “first 
 
 Recommendation: normalize links and copy examples so they work when this repository is the root on GitHub.
 
-### 2) Placeholder token documentation drift (`{{KFK_*}}`)
+### 2) Placeholder token documentation drift (`{{SK_*}}`)
 
 The kit positions [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:1) as “single source of truth” for placeholders, but the templates currently require additional tokens that aren’t covered there.
 
 Examples:
 
-- `{{KFK_ARCH_VERIFY_CMD}}` appears in [`templates/.kilocode/fitter.toml`](templates/.kilocode/fitter.toml:9) but is not documented in [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:7).
-- `{{KFK_ARCH_CONFIG_PATH}}` and `{{KFK_ARTIFACTS_DIR}}` appear in [`templates/.kilocodemodes`](templates/.kilocodemodes:8) but are not documented in [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:7).
-- `{{KFK_CLAIMS_MODULE}}` appears in [`templates/.kilocodemodes`](templates/.kilocodemodes:91) but is not documented in [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:7).
+- `{{SK_ARCH_VERIFY_CMD}}` appears in [`templates/.kilocode/fitter.toml`](templates/.kilocode/fitter.toml:9) but is not documented in [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:7).
+- `{{SK_ARCH_CONFIG_PATH}}` and `{{SK_ARTIFACTS_DIR}}` appear in [`templates/.kilocodemodes`](templates/.kilocodemodes:8) but are not documented in [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:7).
+- `{{SK_CLAIMS_MODULE}}` appears in [`templates/.kilocodemodes`](templates/.kilocodemodes:91) but is not documented in [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:7).
 
 Why this matters: because the repo emphasizes schema discipline in [`docs/SCHEMAS.md`](docs/SCHEMAS.md:1), reviewers will notice and interpret this as config drift.
 
@@ -90,7 +90,7 @@ Most remaining issues are “pre-share polish” rather than fundamental archite
    - [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:1)
 
 2. Reconcile placeholder token documentation:
-   - inventory all `{{KFK_*}}` usage under [`templates/`](templates/:1)
+   - inventory all `{{SK_*}}` usage under [`templates/`](templates/:1)
    - document any missing tokens in [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:1)
    - add a short “Token audit” section
 

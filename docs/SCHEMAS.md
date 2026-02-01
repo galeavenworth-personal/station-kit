@@ -1,6 +1,6 @@
 # Schemas
 
-This document is the single authoritative schema reference for the Kilo Factory Kit. All workflows and handoff packets MUST reference these definitions to avoid drift.
+This document is the single authoritative schema reference for the Station Kit. All workflows and handoff packets MUST reference these definitions to avoid drift.
 
 ---
 

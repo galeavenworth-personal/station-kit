@@ -1,4 +1,4 @@
-# Agent Instructions (Kilo Factory Kit)
+# Agent Instructions (Station Kit)
 
 This repository uses **Beads** (`bd`) for task tracking.
 

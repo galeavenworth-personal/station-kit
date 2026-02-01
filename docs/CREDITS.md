@@ -1,12 +1,12 @@
 # Credits and attribution
 
-Kilo Factory Kit (KFK) is a templates-only repository. It does not ship or install the runtime tools it depends on.
+Station Kit (SK) is a templates-only repository. It does not ship or install the runtime tools it depends on.
 
 This document records upstream components referenced by the kit, plus canonical links for maintainers and reviewers.
 
 ## Kilo Code (runtime)
 
-- KFK is designed to run inside **Kilo Code**.
+- SK is designed to run inside **Kilo Code**.
 - Site: https://kilo.ai/
 
 Kilo Code provides the runtime features that these templates assume (for example: Orchestrator-mode parent tasks, custom modes, and MCP tool connections).
@@ -16,7 +16,7 @@ Kilo Code provides the runtime features that these templates assume (for example
 - **Beads** (`bd`) by Steve Yegge
 - Source: https://github.com/steveyegge/beads
 
-KFK assumes Beads is the work-order system and task-state source of truth.
+SK assumes Beads is the work-order system and task-state source of truth.
 
 Where it’s referenced:
 - Install prerequisites: [`docs/INSTALL.md`](INSTALL.md)
@@ -27,7 +27,7 @@ Where it’s referenced:
 - **mcp-sequential-thinking** (specific fork) by Arben Adm
 - Source: https://github.com/arben-adm/mcp-sequential-thinking
 
-KFK uses this MCP server as a reasoning continuity/audit station: templates require session import/export and stamped summaries.
+SK uses this MCP server as a reasoning continuity/audit station: templates require session import/export and stamped summaries.
 
 Where it’s referenced:
 - Install prerequisites: [`docs/INSTALL.md`](INSTALL.md)
@@ -39,7 +39,7 @@ Where it’s referenced:
 - **Augment Code MCP** (context services)
 - Docs: https://docs.augmentcode.com/context-services/mcp/overview
 
-KFK assumes this MCP service is available for fast codebase retrieval.
+SK assumes this MCP service is available for fast codebase retrieval.
 
 Where it’s referenced:
 - Install prerequisites: [`docs/INSTALL.md`](INSTALL.md)

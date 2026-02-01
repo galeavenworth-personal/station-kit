@@ -1,10 +1,10 @@
 # Model strategy and cognitive framing
 
-Kilo Factory Kit (KFK) is designed around a simple idea:
+Station Kit (SK) is designed around a simple idea:
 
 > Treat software work as a factory line of stations. Each station gets a role name, constraints, and a model choice that make it excellent at its one job.
 
-KFK is “provider-neutral” in the narrow sense that you can **swap models per station** without changing the workflow contracts.
+SK is “provider-neutral” in the narrow sense that you can **swap models per station** without changing the workflow contracts.
 
 ## Terms
 
@@ -14,7 +14,7 @@ KFK is “provider-neutral” in the narrow sense that you can **swap models per
 
 ## Why the role names matter
 
-KFK intentionally renames generic roles (for example, “Code” → “Code Fabricator”) to:
+SK intentionally renames generic roles (for example, “Code” → “Code Fabricator”) to:
 
 - reduce conversational drift
 - focus the model on production changes + gates
@@ -24,7 +24,7 @@ See the mode definitions in [`templates/.kilocodemodes`](../templates/.kilocodem
 
 ## Recommended model traits per station
 
-KFK does not require specific model vendors. The goal is to match *station demands*.
+SK does not require specific model vendors. The goal is to match *station demands*.
 
 | Station | Mode slug | What you want from the model | Failure mode to watch |
 | --- | --- | --- | --- |

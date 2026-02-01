@@ -11,6 +11,9 @@
 # Local Kilo Code workspace artifacts
 /.kilocode/
 
+# Private planning (local only)
+/private/
+
 # Python tooling (if used by consumers)
 /.venv/
 /venv/

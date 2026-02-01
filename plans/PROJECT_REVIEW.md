@@ -1,4 +1,4 @@
-# Project Review: Kilo Factory Kit (pre-share checklist)
+# Project Review: Station Kit (pre-share checklist)
 
 Scope reviewed: public-facing docs + template assets under [`templates/`](templates/:1).
 
@@ -68,20 +68,20 @@ Recommendation: keep the integrations but phrase them as:
 
 Observed tokens in templates include (non-exhaustive):
 
-- `{{KFK_PYTHON_RUNNER}}`
-- `{{KFK_MYPY_TARGET}}`
-- `{{KFK_PYTEST_ARGS}}`
-- `{{KFK_ARCH_VERIFY_CMD}}`
-- `{{KFK_BOUNDED_GATE_RUNNER_CMD}}`
-- `{{KFK_ARCH_CONFIG_PATH}}`
-- `{{KFK_ARTIFACTS_DIR}}`
-- `{{KFK_CLAIMS_MODULE}}`
-- `{{KFK_FITTER_VERSION}}`
-- `{{KFK_FITTER_DESCRIPTION}}`
+- `{{SK_PYTHON_RUNNER}}`
+- `{{SK_MYPY_TARGET}}`
+- `{{SK_PYTEST_ARGS}}`
+- `{{SK_ARCH_VERIFY_CMD}}`
+- `{{SK_BOUNDED_GATE_RUNNER_CMD}}`
+- `{{SK_ARCH_CONFIG_PATH}}`
+- `{{SK_ARTIFACTS_DIR}}`
+- `{{SK_CLAIMS_MODULE}}`
+- `{{SK_FITTER_VERSION}}`
+- `{{SK_FITTER_DESCRIPTION}}`
 
 These are documented in [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:5), which is good. The gap is ensuring we can automatically *prove* there are no extra/undocumented tokens in templates.
 
-Recommendation: add a short “Token audit” section to [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:1) explaining how to grep for `{{KFK_` across copied templates.
+Recommendation: add a short “Token audit” section to [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:1) explaining how to grep for `{{SK_` across copied templates.
 
 ### 6) Repo hygiene docs expected by employers/public repos
 

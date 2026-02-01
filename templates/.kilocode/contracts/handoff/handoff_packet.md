@@ -6,7 +6,7 @@ The **Handoff Packet** is the execution-ready work order emitted by `/orchestrat
 
 It is intentionally small and explicit: the goal is to transfer *decisions + scope + risks* without transferring unbounded chat logs.
 
-Canonical schema reference: [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:47)
+Canonical schema reference: [`docs/SCHEMAS.md`](../../../../docs/SCHEMAS.md)
 
 ## JSON Template (minimal skeleton)
 
@@ -48,4 +48,3 @@ Canonical schema reference: [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:47)
 
 - Always include `runtime_attestations` for the parent and each subtask that produced a handoff.
 - Keep this payload small; link out to files on disk rather than pasting logs.
-

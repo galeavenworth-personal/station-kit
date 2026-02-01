@@ -35,7 +35,7 @@ Contract templates live under [`templates/.kilocode/contracts/`](../templates/.k
 
 **When to use:** After prep approval to execute scoped implementation work in isolated subtasks.
 
-**Tooling:** Beads (`bd`) for closing/syncing task status; Sequential Thinking MCP for session continuity; Augment Code MCP for retrieval; bounded gate runner placeholder via `{{KFK_BOUNDED_GATE_RUNNER_CMD}}`.
+**Tooling:** Beads (`bd`) for closing/syncing task status; Sequential Thinking MCP for session continuity; Augment Code MCP for retrieval; bounded gate runner placeholder via `{{SK_BOUNDED_GATE_RUNNER_CMD}}`.
 
 ## [`orchestrate-refactor.md`](../templates/.kilocode/workflows/orchestrate-refactor.md:1)
 **What it does:** Multi-phase refactor workflow with analysis, planning (alternatives), implementation, test update, and optional architecture verification.

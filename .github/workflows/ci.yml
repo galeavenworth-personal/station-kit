@@ -11,7 +11,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Basic repo sanity
-        run: |
-          echo "No automated checks configured yet."
-          echo "Add tooling-specific checks here when ready."
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Placeholder scan
+        run: python scripts/scan_placeholders.py
+      - name: Token audit
+        run: python scripts/token_audit.py
+      - name: Markdown link validation
+        run: python scripts/check_md_links.py --include-templates

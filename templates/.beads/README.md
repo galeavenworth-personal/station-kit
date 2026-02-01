@@ -4,10 +4,9 @@ This directory is a minimal **template** to help bootstrap Beads usage in a new 
 
 ## Important
 
-- The Kilo Factory Kit does **not** install Beads.
+- The Station Kit does **not** install Beads.
 - You must install the `bd` CLI and initialize/configure it for your repository.
 
 ## What this template provides
 
-- [`implementation-guides/`](implementation-guides/:1): documents that workflows may link to.
-
+- [`implementation-guides/`](./implementation-guides/:1): documents that workflows may link to.

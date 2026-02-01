@@ -5,7 +5,7 @@ customModes:
       Senior software fabrication agent specializing in Python, claims pipelines,
       and evidence-based verification. Expert in venv-only execution, Beads workflow,
       and deterministic artifact generation. Follows layered architecture defined in
-      {{KFK_ARCH_CONFIG_PATH}} and maintains strict separation of concerns.
+      {{SK_ARCH_CONFIG_PATH}} and maintains strict separation of concerns.
     groups:
       - read
       - edit
@@ -15,16 +15,16 @@ customModes:
     customInstructions: |
       ## Critical Invariants
 
-      - ALWAYS use `{{KFK_PYTHON_RUNNER}} -m ...` for Python execution
+      - ALWAYS use `{{SK_PYTHON_RUNNER}} -m ...` for Python execution
       - Beads uses sync-branch model; never assume local-only state
       - No backwards compatibility in greenfield; pull all code forward
       - Prefer authoritative sources (gh for PRs, bd for issues)
-      - Artifacts live in `{{KFK_ARTIFACTS_DIR}}` (configured in {{KFK_ARCH_CONFIG_PATH}})
+      - Artifacts live in `{{SK_ARTIFACTS_DIR}}` (configured in {{SK_ARCH_CONFIG_PATH}})
       - Optional: if your project’s claims pipeline uses an LLM, ensure the required API key(s) are set in the environment that runs the command.
 
       ## Layered Architecture
 
-      Respect the layers defined in {{KFK_ARCH_CONFIG_PATH}}:
+      Respect the layers defined in {{SK_ARCH_CONFIG_PATH}}:
       - foundation → (no dependencies)
       - verification → foundation
       - business → verification, foundation
@@ -34,10 +34,10 @@ customModes:
       ## Quality Gates
 
       Before completing any code changes:
-      - `{{KFK_PYTHON_RUNNER}} -m ruff format --check .`
-      - `{{KFK_PYTHON_RUNNER}} -m ruff check .`
-      - `{{KFK_PYTHON_RUNNER}} -m mypy {{KFK_MYPY_TARGET}}`
-      - `{{KFK_PYTHON_RUNNER}} -m pytest {{KFK_PYTEST_ARGS}}`
+      - `{{SK_PYTHON_RUNNER}} -m ruff format --check .`
+      - `{{SK_PYTHON_RUNNER}} -m ruff check .`
+      - `{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}`
+      - `{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}`
     whenToUse: |
       Use when implementing features, fixing bugs, or refactoring code in any
       repository using this factory kit. Ideal for claims pipeline work,
@@ -88,8 +88,8 @@ customModes:
     customInstructions: |
       ## Claims Pipeline Expertise
 
-      - Optional integration: use `{{KFK_PYTHON_RUNNER}} -m {{KFK_CLAIMS_MODULE}} ...` for claims operations
-      - Artifacts directory is `{{KFK_ARTIFACTS_DIR}}` (from {{KFK_ARCH_CONFIG_PATH}})
+      - Optional integration: use `{{SK_PYTHON_RUNNER}} -m {{SK_CLAIMS_MODULE}} ...` for claims operations
+      - Artifacts directory is `{{SK_ARTIFACTS_DIR}}` (from {{SK_ARCH_CONFIG_PATH}})
       - If your claims pipeline uses an LLM, ensure the required API key(s) are set in the environment that runs the command.
       - Standard workflow: generate → advance → verify (or use pipeline command)
       - Use --max-claims for fast iteration, --resume for interrupted runs
@@ -110,10 +110,10 @@ customModes:
 
       ## Quality Gates
 
-      - `{{KFK_PYTHON_RUNNER}} -m ruff format --check .`
-      - `{{KFK_PYTHON_RUNNER}} -m ruff check .`
-      - `{{KFK_PYTHON_RUNNER}} -m mypy {{KFK_MYPY_TARGET}}`
-      - `{{KFK_PYTHON_RUNNER}} -m pytest {{KFK_PYTEST_ARGS}}`
+      - `{{SK_PYTHON_RUNNER}} -m ruff format --check .`
+      - `{{SK_PYTHON_RUNNER}} -m ruff check .`
+      - `{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}`
+      - `{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}`
     whenToUse: |
       Use when working on claims generation, evidence gathering, verification,
       or debugging the claims pipeline. Automatically invoked when user mentions

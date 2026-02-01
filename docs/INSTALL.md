@@ -2,9 +2,9 @@
 
 ## Scope
 
-Kilo Factory Kit (KFK) ships **templates only**: you copy files into a target repository. It does not install CLIs, MCP servers, or runtime tooling.
+Station Kit (SK) ships **templates only**: you copy files into a target repository. It does not install CLIs, MCP servers, or runtime tooling.
 
-KFK is **Kilo Code-specific**. “Provider-neutral” means you can swap model providers/models per role (per mode) inside Kilo Code while keeping the workflow contracts constant.
+SK is **Kilo Code-specific**. “Provider-neutral” means you can swap model providers/models per role (per mode) inside Kilo Code while keeping the workflow contracts constant.
 
 See:
 - [`WHY_KILO_CODE.md`](WHY_KILO_CODE.md:1)
@@ -35,7 +35,7 @@ cp -R templates/.beads ./.beads
 cp templates/AGENTS.md ./AGENTS.md
 ```
 
-2) Replace placeholders (`{{KFK_*}}`) in the copied templates.
+2) Replace placeholders (`{{SK_*}}`) in the copied templates.
     - See [`CONFIG_REFERENCE.md`](CONFIG_REFERENCE.md:1) for required tokens, defaults, and examples.
 
 3) Confirm the canonical Fit Profiles location:
@@ -45,13 +45,13 @@ cp templates/AGENTS.md ./AGENTS.md
 4) Enable additional tooling as needed:
      - **GitHub CLI** (`gh`) — required for PR review intake and acknowledgement workflow.
 
-5) Configure Kilo Code UI settings (required for KFK Orchestrator behavior)
+5) Configure Kilo Code UI settings (required for SK Orchestrator behavior)
 
 In Kilo Code, open:
 
 `Settings → Agent Behaviour → Modes → Orchestrator`
 
-Set the following fields exactly as shown. These settings are **required** for the KFK reference workflow behavior (parent Orchestrator that reliably spawns/coordinates subtasks using the kit’s contracts).
+Set the following fields exactly as shown. These settings are **required** for the SK reference workflow behavior (parent Orchestrator that reliably spawns/coordinates subtasks using the kit’s contracts).
 
 After updating the fields below, click **Save**.
 
@@ -95,4 +95,4 @@ The factory line is intentionally opinionated. These components are the “stati
 
 ## Safety notes
 - Keep TOML/YAML files parseable; placeholders belong **inside quotes**.
-- Use consistent quoting (`"{{KFK_*}}"`) when substituting values that contain spaces.
+- Use consistent quoting (`"{{SK_*}}"`) when substituting values that contain spaces.

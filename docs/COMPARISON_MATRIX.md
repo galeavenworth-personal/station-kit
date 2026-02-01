@@ -1,15 +1,15 @@
 # Comparison matrix (positioning)
 
-Kilo Factory Kit (KFK) is easiest to understand if you treat it as **workflow + contracts + operations**, not as an agent runtime.
+Station Kit (SK) is easiest to understand if you treat it as **workflow + contracts + operations**, not as an agent runtime.
 
-## What KFK is optimizing
+## What SK is optimizing
 
 - Supervised execution (STOP gates)
 - Resumability via explicit handoffs
 - Accountability artifacts (contracts)
 - Bounded failure handling (line health)
 
-## What KFK is not optimizing
+## What SK is not optimizing
 
 - Inline code completion speed
 - Hosting or running agents as a service
@@ -17,12 +17,12 @@ Kilo Factory Kit (KFK) is easiest to understand if you treat it as **workflow + 
 
 ## Matrix
 
-| Category | Typical strengths | Typical gaps | Where KFK differentiates |
+| Category | Typical strengths | Typical gaps | Where SK differentiates |
 | --- | --- | --- | --- |
 | IDE copilots | fast edits, inline suggestions | weak audit trail, weak task state, weak failure routing | explicit work orders, gates, and contracts |
 | End-to-end coding agents | broader autonomy, multi-step execution | repeatability, supervision, bounded retries | supervised subtasks + contract handoffs |
-| Orchestration frameworks | agent graphs, tool routing, runtime building blocks | operational discipline is app-specific | KFK is the operational discipline blueprint |
-| Human runbooks | domain-accurate procedures | high cognitive load, inconsistent execution | KFK encodes runbooks into executable workflows |
+| Orchestration frameworks | agent graphs, tool routing, runtime building blocks | operational discipline is app-specific | SK is the operational discipline blueprint |
+| Human runbooks | domain-accurate procedures | high cognitive load, inconsistent execution | SK encodes runbooks into executable workflows |
 
 ## Concrete differentiators (the wedge)
 

@@ -1,12 +1,12 @@
 # Why Kilo Code
 
-Kilo Factory Kit (KFK) is intentionally **Kilo Code-specific**.
+Station Kit (SK) is intentionally **Kilo Code-specific**.
 
 This repo ships the workflow/contract layer (templates). Kilo Code provides the runtime capabilities that make those workflows executable and enforceable.
 
-## What KFK relies on from Kilo Code
+## What SK relies on from Kilo Code
 
-KFK’s “factory line” design assumes Kilo Code can:
+SK’s “factory line” design assumes Kilo Code can:
 
 1) **Run an Orchestrator parent that spawns subtasks**
 - Parent task coordinates.
@@ -17,8 +17,8 @@ KFK’s “factory line” design assumes Kilo Code can:
 - Each mode controls tool access and file edit scope.
 
 3) **Switch model/provider per role (per mode)**
-- KFK is “provider-neutral” in the sense that *you can experiment with model choice per station*.
-- KFK is not claiming “works in every agent runtime.” It is a Kilo workflow kit.
+- SK is “provider-neutral” in the sense that *you can experiment with model choice per station*.
+- SK is not claiming “works in every agent runtime.” It is a Kilo workflow kit.
 
 4) **Enforce tool boundaries per role**
 - Example: Architect can plan, but not write product code.
@@ -28,9 +28,9 @@ KFK’s “factory line” design assumes Kilo Code can:
 - Sequential thinking for reasoning continuity and session import/export.
 - Codebase retrieval for fast semantic context.
 
-## What KFK provides (templates)
+## What SK provides (templates)
 
-KFK provides:
+SK provides:
 
 - **Workflows** (invoked as slash commands) under [`templates/.kilocode/workflows/`](../templates/.kilocode/workflows/:1)
 - **Contracts** (explicit artifacts passed between stations) under [`templates/.kilocode/contracts/`](../templates/.kilocode/contracts/:1)
@@ -57,7 +57,7 @@ For concrete workflow definitions, see:
 
 ## What this is not
 
-KFK is not:
+SK is not:
 
 - a generic multi-agent framework
 - an IDE copilot

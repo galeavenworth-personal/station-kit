@@ -1,23 +1,23 @@
-# Kilo Factory Kit
+# Station Kit
 
 ## Overview
-Kilo Factory Kit (KFK) is an opinionated, copy/paste-ready set of **Kilo Code** orchestration templates for running a factory-line workflow (start → execute → refactor → PR review response → line health).
+Station Kit (SK) is an opinionated, copy/paste-ready set of **Kilo Code** orchestration templates for running a factory-line workflow (start → execute → refactor → PR review response → line health).
 
 It installs **templates only** under [`templates/`](templates/:1) so you can drop them into any repo without adding runtime installers or CLIs.
 
 ### What “provider-neutral” means (and what it does not mean)
 
-KFK is **Kilo Code-specific**, but **model-provider flexible**: you can run different model providers/models per role/station (e.g., Architect vs Code Fabricator vs Fitter) and A/B test them while keeping workflow contracts constant.
+SK is **Kilo Code-specific**, but **model-provider flexible**: you can run different model providers/models per role/station (e.g., Architect vs Code Fabricator vs Fitter) and A/B test them while keeping workflow contracts constant.
 
 See:
 - [`docs/WHY_KILO_CODE.md`](docs/WHY_KILO_CODE.md:1)
 - [`docs/MODEL_STRATEGY.md`](docs/MODEL_STRATEGY.md:1)
 
-KFK does **not** claim to be a general-purpose agent runtime for every environment. It is a workflow + contract kit designed around Kilo Code’s Orchestrator + custom modes.
+SK does **not** claim to be a general-purpose agent runtime for every environment. It is a workflow + contract kit designed around Kilo Code’s Orchestrator + custom modes.
 
 ## Reference factory stack (required to run the workflows as-written)
 
-Kilo Factory Kit is a **reference factory design**. The factory relies on best-in-class stations that are required for the workflows to work as designed:
+Station Kit is a **reference factory design**. The factory relies on best-in-class stations that are required for the workflows to work as designed:
 
 - **Beads (`bd`)** — work-order system and task-state source of truth. The factory’s throughline depends on it. See [`templates/AGENTS.md`](templates/AGENTS.md:1).
 - **Sequential Thinking MCP (specific fork)** — reasoning audit trail with mandatory import/export and stamped summaries. See [`templates/.kilocode/workflows/orchestrate-start-task.md`](templates/.kilocode/workflows/orchestrate-start-task.md:215).
@@ -42,7 +42,7 @@ cp -R templates/.beads ./.beads
 cp templates/AGENTS.md ./AGENTS.md
 ```
 
-Then replace `{{KFK_*}}` placeholders using the guidance in [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:1).
+Then replace `{{SK_*}}` placeholders using the guidance in [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md:1).
 
 ## Next steps
 - Install instructions: [`docs/INSTALL.md`](docs/INSTALL.md:1)

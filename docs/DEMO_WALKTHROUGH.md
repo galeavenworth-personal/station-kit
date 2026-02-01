@@ -7,7 +7,7 @@ This walkthrough is meant to let a reviewer understand the factory-line flow qui
 1) Copy templates into a target repo:
 - Follow [`docs/INSTALL.md`](INSTALL.md:1)
 
-2) Replace all `{{KFK_*}}` tokens:
+2) Replace all `{{SK_*}}` tokens:
 - Use [`docs/CONFIG_REFERENCE.md`](CONFIG_REFERENCE.md:1)
 
 ## Demo scenario

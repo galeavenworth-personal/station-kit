@@ -2,7 +2,7 @@
 
 ## Scope
 
-Kilo Factory Kit (KFK) is a **workflow + contract** template kit.
+Station Kit (SK) is a **workflow + contract** template kit.
 
 Contributions are most valuable when they improve:
 

@@ -1,6 +1,6 @@
 # Mental onramp: why this kit exists
 
-Kilo Factory Kit (KFK) is a workflow blueprint for building software in a world where:
+Station Kit (SK) is a workflow blueprint for building software in a world where:
 
 - code is co-produced with AI
 - work is multi-session and multi-agent
@@ -17,7 +17,7 @@ This repo is both:
 
 Real work rarely happens in one uninterrupted session.
 
-KFK makes continuity explicit:
+SK makes continuity explicit:
 
 - each phase exports a session
 - the next phase imports it
@@ -32,7 +32,7 @@ See:
 
 When task identity and state live only in chat, you lose auditability and resumability.
 
-KFK treats task state as a station:
+SK treats task state as a station:
 
 - **Beads** is the work-order and task-state source of truth
 
@@ -48,7 +48,7 @@ For systems that generate artifacts (or rely on structured outputs), correctness
 - verify them
 - detect drift
 
-KFK bakes in:
+SK bakes in:
 
 - explicit quality gates
 - “no unbounded waits” discipline
@@ -62,7 +62,7 @@ See:
 
 Stalls and timeouts are normal in real pipelines.
 
-KFK makes failure handling explicit and bounded:
+SK makes failure handling explicit and bounded:
 
 - Orchestrator emits a **Line Fault Contract**
 - Fitter returns a **Restoration Contract**
@@ -76,7 +76,7 @@ See:
 
 The biggest risk in agentic coding is uncontrolled implementation.
 
-KFK makes supervision a first-class workflow feature:
+SK makes supervision a first-class workflow feature:
 
 - prepare → STOP → execute
 - plan refactor → STOP → implement refactor
@@ -87,7 +87,7 @@ See:
 
 ### 6) Closed-loop PR review response
 
-KFK treats PR review feedback as something you must close the loop on:
+SK treats PR review feedback as something you must close the loop on:
 
 - build a ledger
 - cluster responses
@@ -102,18 +102,19 @@ See:
 
 ## Where this onramp is used
 
-KFK is meant to be dogfooded against real projects.
+SK is meant to be dogfooded against real projects.
 
-- **repomap (MIT)**: deterministic repository analysis artifacts + verification.
-  - Public repo: https://github.com/galeavenworth-personal/repomap
+- **repomap (MIT)**: deterministic repository analysis artifacts + verification + claims generation.
+  - Currently private repo: https://github.com/galeavenworth-personal/repomap
 - **Mimir (PolyForm Noncommercial)**: persistent executive agent with externalized state.
+  - Currently private repo: https://github.com/galeavenworth-personal/repomap
   - License: https://polyformproject.org/licenses/noncommercial/1.0.0/
 
-KFK is the stable workflow reference. repomap is the deterministic “measurement jig.” Mimir is the persistent executive system.
+SK is the stable workflow reference. repomap is the deterministic “measurement jig.” Mimir is the persistent executive system.
 
 ## Reviewer path (recommended)
 
-1) What KFK depends on and why: [`docs/WHY_KILO_CODE.md`](WHY_KILO_CODE.md:1)
+1) What SK depends on and why: [`docs/WHY_KILO_CODE.md`](WHY_KILO_CODE.md:1)
 2) How to pick models per station safely: [`docs/MODEL_STRATEGY.md`](MODEL_STRATEGY.md:1)
 3) The end-to-end toy run: [`docs/DEMO_WALKTHROUGH.md`](DEMO_WALKTHROUGH.md:1)
 4) The schema contracts: [`docs/SCHEMAS.md`](SCHEMAS.md:1)

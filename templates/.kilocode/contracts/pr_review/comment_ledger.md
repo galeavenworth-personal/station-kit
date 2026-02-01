@@ -6,7 +6,7 @@ The **Comment Ledger** is the authoritative, stable record of every PR review it
 
 Invariant: **no completion until every ledger row is acknowledged**.
 
-Canonical row schema reference: [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:87)
+Canonical row schema reference: [`docs/SCHEMAS.md`](../../../../docs/SCHEMAS.md)
 
 ## Ledger file shape (recommended)
 
@@ -54,4 +54,3 @@ Store the ledger as JSON (array of rows) plus optional metadata.
 | row_id | category | summary | status | disposition | ack_reference |
 | --- | --- | --- | --- | --- | --- |
 | PRR-001 | blocking | <summary> | open | fix | <url or id> |
-
