@@ -453,7 +453,7 @@ Follow the implementation steps from the plan:
 
 For each step:
 1. Make targeted changes
-2. Run `{{KFK_PYTHON_RUNNER}} -m ruff format --check .` and `{{KFK_PYTHON_RUNNER}} -m ruff check .`
+2. Run `{{SK_PYTHON_RUNNER}} -m ruff format --check .` and `{{SK_PYTHON_RUNNER}} -m ruff check .`
 3. Verify imports and types
 4. Run affected tests
 
@@ -467,9 +467,9 @@ Follow migration strategy:
 ## Step 4: Validation
 
 ```bash
-{{KFK_PYTHON_RUNNER}} -m ruff format --check .
-{{KFK_PYTHON_RUNNER}} -m ruff check .
-{{KFK_PYTHON_RUNNER}} -m mypy {{KFK_MYPY_TARGET}}
+{{SK_PYTHON_RUNNER}} -m ruff format --check .
+{{SK_PYTHON_RUNNER}} -m ruff check .
+{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}
 ```
 
 ## Step 5: Export Progress
@@ -556,7 +556,7 @@ new_task(
 ## Step 4: Run Tests
 
 ```bash
-{{KFK_PYTHON_RUNNER}} -m pytest tests/ -v
+{{SK_PYTHON_RUNNER}} -m pytest tests/ -v
 ```
 
 ## Step 5: Export Progress
@@ -619,7 +619,7 @@ new_task(
 ## Step 1: Optional Architecture Verification
 
 ```bash
-{{KFK_ARCH_VERIFY_CMD}}
+{{SK_ARCH_VERIFY_CMD}}
 ```
 
 Check for:
@@ -687,10 +687,10 @@ update_todo_list(
 Run final quality gates:
 
 ```bash
-{{KFK_PYTHON_RUNNER}} -m ruff format --check .
-{{KFK_PYTHON_RUNNER}} -m ruff check .
-{{KFK_PYTHON_RUNNER}} -m mypy {{KFK_MYPY_TARGET}}
-{{KFK_PYTHON_RUNNER}} -m pytest {{KFK_PYTEST_ARGS}}
+{{SK_PYTHON_RUNNER}} -m ruff format --check .
+{{SK_PYTHON_RUNNER}} -m ruff check .
+{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}
+{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}
 ```
 
 Compile final report:

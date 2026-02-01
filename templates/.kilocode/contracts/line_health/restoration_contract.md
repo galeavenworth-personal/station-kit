@@ -23,7 +23,7 @@ Orchestrator uses this contract to decide whether to retry the blocked station (
     "Adjust invocation to show progress: add '-vv' to reduce false stall classification"
   ],
   "verification_run": {
-    "invocation": "{{KFK_PYTHON_RUNNER}} -m pytest -m 'not live' -vv",
+    "invocation": "{{SK_PYTHON_RUNNER}} -m pytest -m 'not live' -vv",
     "status": "PASS",
     "elapsed_seconds": 410
   },

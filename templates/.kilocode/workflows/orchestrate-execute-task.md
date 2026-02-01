@@ -255,8 +255,8 @@ mcp--sequentialthinking--process_thought(
 ## Step 6: Validate
 
 ```bash
-{{KFK_PYTHON_RUNNER}} -m ruff format --check .
-{{KFK_PYTHON_RUNNER}} -m ruff check .
+{{SK_PYTHON_RUNNER}} -m ruff format --check .
+{{SK_PYTHON_RUNNER}} -m ruff check .
 ```
 
 ## Step 7: Export Progress
@@ -354,7 +354,7 @@ Based on implementation:
 ## Step 3: Run Tests
 
 ```bash
-{{KFK_PYTHON_RUNNER}} -m pytest tests/ -v
+{{SK_PYTHON_RUNNER}} -m pytest tests/ -v
 ```
 
 ## Step 4: Export Progress
@@ -423,7 +423,7 @@ A gate run is a **Line Fault** when it cannot complete deterministically within 
 Until a dedicated runner exists, represent bounded execution with a placeholder command such as:
 
 ```bash
-{{KFK_BOUNDED_GATE_RUNNER_CMD}}
+{{SK_BOUNDED_GATE_RUNNER_CMD}}
 ```
 
 **Required outputs of the bounded runner (conceptual):**
@@ -483,18 +483,18 @@ This workflow does not require any specific repository analysis tool. Gate invoc
 ## Gate 1: Format Check
 
 ```bash
-{{KFK_PYTHON_RUNNER}} -m ruff format --check .
+{{SK_PYTHON_RUNNER}} -m ruff format --check .
 ```
 
 If fails:
 ```bash
-{{KFK_PYTHON_RUNNER}} -m ruff format .
+{{SK_PYTHON_RUNNER}} -m ruff format .
 ```
 
 ## Gate 2: Lint Check
 
 ```bash
-{{KFK_PYTHON_RUNNER}} -m ruff check .
+{{SK_PYTHON_RUNNER}} -m ruff check .
 ```
 
 **If fails, DO NOT add global ignores.** Use clean fixes:
@@ -508,7 +508,7 @@ If fails:
 ## Gate 3: Type Check
 
 ```bash
-{{KFK_PYTHON_RUNNER}} -m mypy {{KFK_MYPY_TARGET}}
+{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}
 ```
 
 **If fails, DO NOT use `# type: ignore`.** Use clean fixes:
@@ -522,7 +522,7 @@ If fails:
 ## Gate 4: Test Suite
 
 ```bash
-{{KFK_PYTHON_RUNNER}} -m pytest {{KFK_PYTEST_ARGS}}
+{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}
 ```
 
 All tests must pass.

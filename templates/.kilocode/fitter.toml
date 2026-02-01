@@ -1,29 +1,29 @@
 [meta]
-version = "{{KFK_FITTER_VERSION}}"
-description = "{{KFK_FITTER_DESCRIPTION}}"
+version = "{{SK_FITTER_VERSION}}"
+description = "{{SK_FITTER_DESCRIPTION}}"
 
 [defaults]
-python_runner = "{{KFK_PYTHON_RUNNER}}"
-mypy_target = "{{KFK_MYPY_TARGET}}"
-pytest_args = "{{KFK_PYTEST_ARGS}}"
-arch_verify_cmd = "{{KFK_ARCH_VERIFY_CMD}}"
+python_runner = "{{SK_PYTHON_RUNNER}}"
+mypy_target = "{{SK_MYPY_TARGET}}"
+pytest_args = "{{SK_PYTEST_ARGS}}"
+arch_verify_cmd = "{{SK_ARCH_VERIFY_CMD}}"
 
 [[gates]]
 id = "ruff_format_check"
 label = "Ruff format check"
-invocation = "{{KFK_PYTHON_RUNNER}} -m ruff format --check ."
+invocation = "{{SK_PYTHON_RUNNER}} -m ruff format --check ."
 
 [[gates]]
 id = "ruff_check"
 label = "Ruff check"
-invocation = "{{KFK_PYTHON_RUNNER}} -m ruff check ."
+invocation = "{{SK_PYTHON_RUNNER}} -m ruff check ."
 
 [[gates]]
 id = "mypy"
 label = "Mypy type check"
-invocation = "{{KFK_PYTHON_RUNNER}} -m mypy {{KFK_MYPY_TARGET}}"
+invocation = "{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}"
 
 [[gates]]
 id = "pytest"
 label = "Pytest"
-invocation = "{{KFK_PYTHON_RUNNER}} -m pytest {{KFK_PYTEST_ARGS}}"
+invocation = "{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}"

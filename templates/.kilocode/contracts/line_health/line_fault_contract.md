@@ -20,7 +20,7 @@ This payload is the only required context passed from Orchestrator → Fitter.
 ```json
 {
   "gate_id": "pytest-not-live",
-  "invocation": "{{KFK_PYTHON_RUNNER}} -m pytest -m 'not live'",
+  "invocation": "{{SK_PYTHON_RUNNER}} -m pytest -m 'not live'",
   "elapsed_seconds": 620,
   "last_output_lines": [
     "tests/integration/test_runtime_sampling_integration.py::test_sampling_distribution ...",

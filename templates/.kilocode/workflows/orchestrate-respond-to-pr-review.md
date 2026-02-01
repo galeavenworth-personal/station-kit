@@ -189,10 +189,10 @@ new_task(
 **Objective:** Run and pass all quality gates.
 
 ```bash
-{{KFK_PYTHON_RUNNER}} -m ruff format --check .
-{{KFK_PYTHON_RUNNER}} -m ruff check .
-{{KFK_PYTHON_RUNNER}} -m mypy {{KFK_MYPY_TARGET}}
-{{KFK_PYTHON_RUNNER}} -m pytest {{KFK_PYTEST_ARGS}}
+{{SK_PYTHON_RUNNER}} -m ruff format --check .
+{{SK_PYTHON_RUNNER}} -m ruff check .
+{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}
+{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}
 ```
 
 **Completion:** attempt_completion with PASS/FAIL for each gate and any fixes applied.
