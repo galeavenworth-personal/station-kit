@@ -9,6 +9,8 @@ from pathlib import Path
 
 LINK_REGEX = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 GITHUB_LINE_REF_REGEX = re.compile(r":\d+$")
+HEADING_REGEX = re.compile(r"^(#{1,6})\s+(.*?)\s*$")
+MD_LINK_TEXT_REGEX = re.compile(r"\[([^\]]+)\]\([^)]+\)")
 
 
 def iter_markdown_files(root: Path) -> list[Path]:
@@ -30,18 +32,87 @@ def normalize_link(link: str) -> str:
     return base
 
 
+def extract_fragment(link: str) -> str | None:
+    if "#" not in link:
+        return None
+    fragment = link.split("#", 1)[1].strip()
+    return fragment or None
+
+
+def normalize_heading_text(text: str) -> str:
+    text = MD_LINK_TEXT_REGEX.sub(r"\1", text)
+    text = text.replace("`", "")
+    text = text.replace("*", "").replace("_", "")
+    text = text.strip()
+    return text
+
+
+def slugify_github(text: str) -> str:
+    text = normalize_heading_text(text).lower()
+    text = re.sub(r"[^a-z0-9\s-]", "", text)
+    text = re.sub(r"\s+", "-", text)
+    text = re.sub(r"-+", "-", text)
+    return text.strip("-")
+
+
+def build_anchor_index(content: str) -> set[str]:
+    anchors: set[str] = set()
+    seen: dict[str, int] = {}
+    for line in content.splitlines():
+        match = HEADING_REGEX.match(line)
+        if not match:
+            continue
+        heading = match.group(2).strip()
+        slug = slugify_github(heading)
+        if not slug:
+            continue
+        count = seen.get(slug, 0)
+        if count:
+            anchor = f"{slug}-{count}"
+        else:
+            anchor = slug
+        seen[slug] = count + 1
+        anchors.add(anchor)
+    return anchors
+
+
+def get_anchor_index(path: Path, cache: dict[Path, set[str]]) -> set[str]:
+    if path in cache:
+        return cache[path]
+    try:
+        content = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        cache[path] = set()
+        return cache[path]
+    anchors = build_anchor_index(content)
+    cache[path] = anchors
+    return anchors
+
+
 def has_github_line_ref(link: str) -> bool:
     base = link.split("#", 1)[0]
     return bool(GITHUB_LINE_REF_REGEX.search(base))
 
 
-def validate_link(file_path: Path, link: str, repo_root: Path, *, forbid_line_refs: bool) -> bool:
+def validate_link(
+    file_path: Path,
+    link: str,
+    repo_root: Path,
+    anchor_cache: dict[Path, set[str]],
+    *,
+    forbid_line_refs: bool,
+) -> bool:
     if not link or link.startswith("#"):
-        return True
+        fragment = extract_fragment(link)
+        if fragment is None:
+            return True
+        anchors = get_anchor_index(file_path, anchor_cache)
+        return fragment in anchors
     if is_http(link) or is_mailto(link):
         return True
     if forbid_line_refs and has_github_line_ref(link):
         return False
+    fragment = extract_fragment(link)
     link = normalize_link(link)
     if not link:
         return True
@@ -53,16 +124,35 @@ def validate_link(file_path: Path, link: str, repo_root: Path, *, forbid_line_re
         target = (repo_root / link).resolve()
     else:
         target = (file_path.parent / link).resolve()
-    return target.exists()
+    if not target.exists():
+        return False
+    if fragment is None:
+        return True
+    if target.suffix.lower() != ".md":
+        return False
+    anchors = get_anchor_index(target, anchor_cache)
+    return fragment in anchors
 
 
-def scan_file(path: Path, repo_root: Path, *, forbid_line_refs: bool) -> list[tuple[int, str]]:
+def scan_file(
+    path: Path,
+    repo_root: Path,
+    anchor_cache: dict[Path, set[str]],
+    *,
+    forbid_line_refs: bool,
+) -> list[tuple[int, str]]:
     failures: list[tuple[int, str]] = []
     content = path.read_text(encoding="utf-8")
     for idx, line in enumerate(content.splitlines(), start=1):
         for match in LINK_REGEX.finditer(line):
             link = match.group(1).strip()
-            if not validate_link(path, link, repo_root, forbid_line_refs=forbid_line_refs):
+            if not validate_link(
+                path,
+                link,
+                repo_root,
+                anchor_cache,
+                forbid_line_refs=forbid_line_refs,
+            ):
                 failures.append((idx, link))
     return failures
 
@@ -96,9 +186,15 @@ def main() -> int:
         candidates.extend(iter_markdown_files(templates_root))
 
     failures = 0
+    anchor_cache: dict[Path, set[str]] = {}
     for path in candidates:
         try:
-            hits = scan_file(path, repo_root, forbid_line_refs=args.github)
+            hits = scan_file(
+                path,
+                repo_root,
+                anchor_cache,
+                forbid_line_refs=args.github,
+            )
         except UnicodeDecodeError:
             continue
         for line_no, link in hits:

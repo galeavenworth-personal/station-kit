@@ -22,7 +22,6 @@ DEFAULT_EXCLUDES = {
     "node_modules",
     "dist",
     "build",
-    "docs",
     "plans",
     "scripts",
     "private",
@@ -77,7 +76,12 @@ def strip_inline_code(line: str) -> str:
     return re.sub(r"`[^`]*`", "", line)
 
 
-def scan_file(path: Path, regexes: list[re.Pattern[str]]) -> list[tuple[int, str]]:
+def scan_file(
+    path: Path,
+    regexes: list[re.Pattern[str]],
+    *,
+    scan_code_blocks: bool = False,
+) -> list[tuple[int, str]]:
     results: list[tuple[int, str]] = []
     try:
         content = path.read_text(encoding="utf-8")
@@ -94,7 +98,7 @@ def scan_file(path: Path, regexes: list[re.Pattern[str]]) -> list[tuple[int, str
         if line.strip().startswith("```"):
             in_code_block = not in_code_block
             continue
-        if in_code_block:
+        if in_code_block and not scan_code_blocks:
             continue
         line_for_scan = strip_inline_code(line)
         for rx in regexes:
@@ -108,6 +112,16 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Scan for publish placeholders.")
     parser.add_argument("--root", default=".", help="Root directory to scan")
     parser.add_argument(
+        "--include-docs",
+        action="store_true",
+        help="Include docs/ directory in scan",
+    )
+    parser.add_argument(
+        "--scan-code-blocks",
+        action="store_true",
+        help="Scan fenced code blocks in markdown files",
+    )
+    parser.add_argument(
         "--pattern",
         action="append",
         dest="patterns",
@@ -119,11 +133,21 @@ def main() -> int:
     regexes = [re.compile(p) for p in patterns]
 
     root = Path(args.root).resolve()
+    excludes = set(DEFAULT_EXCLUDES)
+    if args.include_docs:
+        excludes.discard("docs")
     failures = 0
-    for path in iter_files(root, DEFAULT_EXCLUDES):
+    for path in iter_files(root, excludes):
         if not is_text_like(path):
             continue
-        hits = scan_file(path, regexes)
+        if path.suffix.lower() == ".md":
+            hits = scan_file(
+                path,
+                regexes,
+                scan_code_blocks=args.scan_code_blocks,
+            )
+        else:
+            hits = scan_file(path, regexes)
         if hits:
             rel = path.relative_to(root)
             for line_no, line in hits:
