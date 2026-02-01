@@ -2,12 +2,11 @@
 
 Station Kit (SK) is the **workflow + contract layer** for building complex systems with AI assistance.
 
-It exists for two reasons:
+This document is about how to expose SK and adjacent projects publicly without accidentally publishing the wrong surface area too early.
 
-1) **Career signal**: a self-contained blueprint of a modern software fabrication workflow.
-2) **Mental onramp**: a consistent operating model for building larger projects (repomap and Mimir) without re-deriving workflow discipline each time.
+SK is written to be **reviewable and auditable**: it makes the operating model explicit (contracts, gates, bounded retries, supervised execution) so others can evaluate and reuse it.
 
-## Mental onramp: recurring problems SK standardizes
+## Operational problems SK standardizes
 
 SK standardizes the operational discipline that shows up repeatedly in real work:
 
