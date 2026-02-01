@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+# Default to least-privilege for the GITHUB_TOKEN in a public repository.
+# This workflow only needs to read repository contents to check out and scan files.
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Placeholder scan
+        run: python scripts/scan_placeholders.py --include-docs --scan-code-blocks
+      - name: Token audit
+        run: python scripts/token_audit.py
+      - name: Markdown link validation
+        run: python scripts/check_md_links.py --include-templates --github

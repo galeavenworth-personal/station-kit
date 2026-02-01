@@ -1,0 +1,33 @@
+/.DS_Store
+*.swp
+*.swo
+*.tmp
+*.log
+
+# Editors/IDEs
+/.vscode/
+/.idea/
+
+# Local Kilo Code workspace artifacts
+/.kilocode/
+
+# Private planning (local only)
+/private/
+/pre-flight/
+/plans/
+
+# Python tooling (if used by consumers)
+/.venv/
+/venv/
+__pycache__/
+*.pyc
+
+# Node tooling (if used by consumers)
+/node_modules/
+/dist/
+/build/
+
+# Env files
+.env
+.env.*
+
