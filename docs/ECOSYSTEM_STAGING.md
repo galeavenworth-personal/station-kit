@@ -18,7 +18,7 @@ SK standardizes the operational discipline that shows up repeatedly in real work
 
 3) **Determinism and verification discipline**
 - Work is not “done” until gates pass and outputs are repeatable.
-- Line health exists because stalls/timeouts are normal in real pipelines (see line fault routing in [`templates/.kilocode/workflows/orchestrate-execute-task.md`](../templates/.kilocode/workflows/orchestrate-execute-task.md#line-health-routing-fitter--line-fault--restoration--bounded-retry)).
+- Line health exists because stalls/timeouts are normal in real pipelines (see line fault routing in [`templates/.kilocode/workflows/orchestrate-execute-task.md`](../templates/.kilocode/workflows/orchestrate-execute-task.md#line-health-routing-fitter-line-fault-restoration-bounded-retry)).
 
 4) **Bounded failure handling**
 - Failures route to a maintenance role (Fitter) with explicit contracts, not endless retries.

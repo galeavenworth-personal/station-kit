@@ -65,7 +65,7 @@ SK does **not** claim to be a general-purpose agent runtime for every environmen
 Station Kit is a **reference factory design**. The factory relies on best-in-class stations that are required for the workflows to work as designed:
 
 - **Beads (`bd`)** — work-order system and task-state source of truth. The factory’s throughline depends on it. See [`templates/AGENTS.md`](templates/AGENTS.md).
-- **Sequential Thinking MCP (specific fork)** — reasoning audit trail with mandatory import/export and stamped summaries. See [`templates/.kilocode/workflows/orchestrate-start-task.md`](templates/.kilocode/workflows/orchestrate-start-task.md#phase-4-synthesis--conclusion).
+- **Sequential Thinking MCP (specific fork)** — reasoning audit trail with mandatory import/export and stamped summaries. See [`templates/.kilocode/workflows/orchestrate-start-task.md`](templates/.kilocode/workflows/orchestrate-start-task.md#phase-4-synthesis-conclusion).
 - **Augment Code MCP** — codebase retrieval station optimized for speed and quality. See [`docs/INSTALL.md`](docs/INSTALL.md).
 
 These dependencies are **required** for the reference factory to function correctly. They are intentionally opinionated so the kit can demonstrate consistent, auditable execution.
