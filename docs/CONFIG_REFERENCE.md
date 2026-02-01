@@ -38,7 +38,7 @@ These tokens are used only in optional sections or optional integrations:
 - `{{SK_ARCH_VERIFY_CMD}}` — optional architecture verification command; if you have no architecture gate, set it to a safe no-op (e.g., `true`).
 
 ## Template mapping: `.kilocodemodes`
-Template path: [`templates/.kilocodemodes`](../templates/.kilocodemodes:1)
+Template path: [`templates/.kilocodemodes`](../templates/.kilocodemodes)
 
 Tokens referenced by this template:
 - `{{SK_ARCH_CONFIG_PATH}}` — architecture/layering config reference used in mode instructions
@@ -46,7 +46,7 @@ Tokens referenced by this template:
 - `{{SK_CLAIMS_MODULE}}` — optional claims module entrypoint for claims-ops mode
 
 ## Template mapping: `fitter.toml`
-Template path: [`templates/.kilocode/fitter.toml`](../templates/.kilocode/fitter.toml:1)
+Template path: [`templates/.kilocode/fitter.toml`](../templates/.kilocode/fitter.toml)
 
 ### Fit Profiles (canonical location)
 Fit Profiles live in `.kilocode/fitter.toml` after installation. Represent profiles as parseable TOML tables under a dedicated `profiles` array to keep them stable and machine-readable:

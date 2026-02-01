@@ -8,7 +8,7 @@ auto_execution_mode: 0
 This is a **reference-only** legacy workflow describing a monolithic `/refactor` style process.
 
 This kit’s preferred approach is the orchestrated refactor workflow:
-- [`orchestrate-refactor.md`](../orchestrate-refactor.md:1)
+- [`orchestrate-refactor.md`](../orchestrate-refactor.md)
 
 ## Notes
 - This file is intentionally minimal: the kit is template-only and does not ship runtime logic.

@@ -7,8 +7,8 @@ Station Kit (SK) ships **templates only**: you copy files into a target reposito
 SK is **Kilo Code-specific**. “Provider-neutral” means you can swap model providers/models per role (per mode) inside Kilo Code while keeping the workflow contracts constant.
 
 See:
-- [`WHY_KILO_CODE.md`](WHY_KILO_CODE.md:1)
-- [`MODEL_STRATEGY.md`](MODEL_STRATEGY.md:1)
+- [`WHY_KILO_CODE.md`](WHY_KILO_CODE.md)
+- [`MODEL_STRATEGY.md`](MODEL_STRATEGY.md)
 
 ## Prerequisites (reference factory stack)
 These are **required** for the reference factory design to function as intended:
@@ -36,11 +36,11 @@ cp templates/AGENTS.md ./AGENTS.md
 ```
 
 2) Replace placeholders (`{{SK_*}}`) in the copied templates.
-    - See [`CONFIG_REFERENCE.md`](CONFIG_REFERENCE.md:1) for required tokens, defaults, and examples.
+    - See [`CONFIG_REFERENCE.md`](CONFIG_REFERENCE.md) for required tokens, defaults, and examples.
 
 3) Confirm the canonical Fit Profiles location:
    - Installed at `./.kilocode/fitter.toml`
-   - Profiles are represented with `[[profiles]]` tables (see [`CONFIG_REFERENCE.md`](CONFIG_REFERENCE.md:1)).
+   - Profiles are represented with `[[profiles]]` tables (see [`CONFIG_REFERENCE.md`](CONFIG_REFERENCE.md)).
 
 4) Enable additional tooling as needed:
      - **GitHub CLI** (`gh`) — required for PR review intake and acknowledgement workflow.

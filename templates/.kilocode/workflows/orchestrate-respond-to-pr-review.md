@@ -28,8 +28,8 @@ auto_execution_mode: 3
 **Key invariant:** no completion until **every review comment** appears in the ledger and is **acknowledged**.
 
 Ledger schema and template:
-- Canonical row schema: [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:87)
-- Template: [`.kilocode/contracts/pr_review/comment_ledger.md`](../contracts/pr_review/comment_ledger.md:1)
+- Canonical row schema: [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md#pr-review-ledger-row-object)
+- Template: [`.kilocode/contracts/pr_review/comment_ledger.md`](../contracts/pr_review/comment_ledger.md)
 
 ---
 
@@ -95,13 +95,13 @@ gh api repos/<OWNER>/<REPO>/pulls/<PR_NUMBER>/comments \
 5) Produce the **Comment Ledger** (MANDATORY):
 - One row per comment
 - Use stable row IDs `PRR-001`, `PRR-002`, ... (never renumber)
-- Schema must match [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:1)
+- Schema must match [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md)
 
 ## Output Requirements
 - runtime_model_reported (from environment_details)
 - runtime_mode_reported (mode slug)
 - PR metadata: owner/repo, pr_number, headRefName
-- Comment Ledger (table or JSON matching [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:1))
+- Comment Ledger (table or JSON matching [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md))
 - Summary counts by category
 
 **Completion:** use attempt_completion with the ledger.
@@ -235,7 +235,7 @@ gh pr comment <PR_NUMBER> --body "<ack summary referencing ledger rows>"
 
 ### Ledger Statuses (explicit)
 
-Allowed status values (per [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:1)):
+Allowed status values (per [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md)):
 - `open`
 - `in_progress`
 - `ready_to_ack`

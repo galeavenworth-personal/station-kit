@@ -55,7 +55,7 @@ The agent cannot switch models/accounts programmatically. The enforceable invari
 - `runtime_model_reported`
 - `runtime_mode_reported`
 
-The parent must record these in its own output and include a parent rollup entry in `runtime_attestations` when presenting the handoff packet. Use the canonical schema in [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:1).
+The parent must record these in its own output and include a parent rollup entry in `runtime_attestations` when presenting the handoff packet. Use the canonical schema in [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md).
 
 The workflow is provider-neutral. It records only the **observed runtime** (`runtime_model_reported`, `runtime_mode_reported`).
 
@@ -409,10 +409,10 @@ Use `attempt_completion` to present the handoff packet and wait for user approva
 
 ## Handoff Packet Format
 
-The handoff packet is the "work order" that moves to execution. The canonical schema is defined in [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:1) and must be followed.
+The handoff packet is the "work order" that moves to execution. The canonical schema is defined in [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md) and must be followed.
 
 Template:
-- [`.kilocode/contracts/handoff/handoff_packet.md`](../contracts/handoff/handoff_packet.md:1)
+- [`.kilocode/contracts/handoff/handoff_packet.md`](../contracts/handoff/handoff_packet.md)
 
 **Required:** `runtime_attestations` with one entry per subtask **plus** a parent rollup entry, each including `runtime_model_reported` + `runtime_mode_reported`.
 
@@ -484,8 +484,8 @@ This loads the handoff packet and spawns execution subtasks.
 ## Related Workflows
 
 - [`/orchestrate-execute-task`](./orchestrate-execute-task.md) — Execution phase (after approval)
-- [Legacy: `/start-task`](./legacy/start-task.md:1) — Original monolithic version (reference-only)
-- [Legacy: `/prep-task`](./legacy/prep-task.md:1) — Original monolithic prep workflow (reference-only)
+- [Legacy: `/start-task`](./legacy/start-task.md) — Original monolithic version (reference-only)
+- [Legacy: `/prep-task`](./legacy/prep-task.md) — Original monolithic prep workflow (reference-only)
 
 ---
 

@@ -8,6 +8,7 @@ from pathlib import Path
 
 
 LINK_REGEX = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
+GITHUB_LINE_REF_REGEX = re.compile(r":\d+$")
 
 
 def iter_markdown_files(root: Path) -> list[Path]:
@@ -24,17 +25,23 @@ def is_mailto(link: str) -> bool:
 
 def normalize_link(link: str) -> str:
     base = link.split("#", 1)[0]
-    base = re.sub(r":\d+$", "", base)
     if base.startswith("file://"):
         base = base.replace("file://", "", 1)
     return base
 
 
-def validate_link(file_path: Path, link: str, repo_root: Path) -> bool:
+def has_github_line_ref(link: str) -> bool:
+    base = link.split("#", 1)[0]
+    return bool(GITHUB_LINE_REF_REGEX.search(base))
+
+
+def validate_link(file_path: Path, link: str, repo_root: Path, *, forbid_line_refs: bool) -> bool:
     if not link or link.startswith("#"):
         return True
     if is_http(link) or is_mailto(link):
         return True
+    if forbid_line_refs and has_github_line_ref(link):
+        return False
     link = normalize_link(link)
     if not link:
         return True
@@ -49,13 +56,13 @@ def validate_link(file_path: Path, link: str, repo_root: Path) -> bool:
     return target.exists()
 
 
-def scan_file(path: Path, repo_root: Path) -> list[tuple[int, str]]:
+def scan_file(path: Path, repo_root: Path, *, forbid_line_refs: bool) -> list[tuple[int, str]]:
     failures: list[tuple[int, str]] = []
     content = path.read_text(encoding="utf-8")
     for idx, line in enumerate(content.splitlines(), start=1):
         for match in LINK_REGEX.finditer(line):
             link = match.group(1).strip()
-            if not validate_link(path, link, repo_root):
+            if not validate_link(path, link, repo_root, forbid_line_refs=forbid_line_refs):
                 failures.append((idx, link))
     return failures
 
@@ -67,6 +74,11 @@ def main() -> int:
         "--include-templates",
         action="store_true",
         help="Include templates/ markdown in link validation",
+    )
+    parser.add_argument(
+        "--github",
+        action="store_true",
+        help="Enforce GitHub-compatible links (forbid :line refs)",
     )
     args = parser.parse_args()
 
@@ -86,7 +98,7 @@ def main() -> int:
     failures = 0
     for path in candidates:
         try:
-            hits = scan_file(path, repo_root)
+            hits = scan_file(path, repo_root, forbid_line_refs=args.github)
         except UnicodeDecodeError:
             continue
         for line_no, link in hits:

@@ -27,18 +27,17 @@ Station Kit (SK) is easiest to understand if you treat it as **workflow + contra
 ## Concrete differentiators (the wedge)
 
 1) **Contracts-first**
-- Handoff packet schema in [`docs/SCHEMAS.md`](SCHEMAS.md:1)
-- PR ledger row schema in [`docs/SCHEMAS.md`](SCHEMAS.md:87)
+- Handoff packet schema in [`docs/SCHEMAS.md`](SCHEMAS.md#handoff-packet-minimal-skeleton)
+- PR ledger row schema in [`docs/SCHEMAS.md`](SCHEMAS.md#pr-review-ledger-row-object)
 
 2) **Bounded failure handling**
 - Line fault + restoration contracts:
-  - [`templates/.kilocode/contracts/line_health/line_fault_contract.md`](../templates/.kilocode/contracts/line_health/line_fault_contract.md:1)
-  - [`templates/.kilocode/contracts/line_health/restoration_contract.md`](../templates/.kilocode/contracts/line_health/restoration_contract.md:1)
+  - [`templates/.kilocode/contracts/line_health/line_fault_contract.md`](../templates/.kilocode/contracts/line_health/line_fault_contract.md)
+  - [`templates/.kilocode/contracts/line_health/restoration_contract.md`](../templates/.kilocode/contracts/line_health/restoration_contract.md)
 
 3) **Supervised orchestration (parent foreman + worker subtasks)**
-- Prep workflow: [`templates/.kilocode/workflows/orchestrate-start-task.md`](../templates/.kilocode/workflows/orchestrate-start-task.md:1)
-- Execute workflow: [`templates/.kilocode/workflows/orchestrate-execute-task.md`](../templates/.kilocode/workflows/orchestrate-execute-task.md:1)
+- Prep workflow: [`templates/.kilocode/workflows/orchestrate-start-task.md`](../templates/.kilocode/workflows/orchestrate-start-task.md)
+- Execute workflow: [`templates/.kilocode/workflows/orchestrate-execute-task.md`](../templates/.kilocode/workflows/orchestrate-execute-task.md)
 
 4) **Model-per-role experimentation without changing the contracts**
-- See [`docs/MODEL_STRATEGY.md`](MODEL_STRATEGY.md:1)
-
+- See [`docs/MODEL_STRATEGY.md`](MODEL_STRATEGY.md)

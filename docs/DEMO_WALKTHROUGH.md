@@ -5,10 +5,10 @@ This walkthrough is meant to let a reviewer understand the factory-line flow qui
 ## Setup (one-time)
 
 1) Copy templates into a target repo:
-- Follow [`docs/INSTALL.md`](INSTALL.md:1)
+- Follow [`docs/INSTALL.md`](INSTALL.md)
 
 2) Replace all `{{SK_*}}` tokens:
-- Use [`docs/CONFIG_REFERENCE.md`](CONFIG_REFERENCE.md:1)
+- Use [`docs/CONFIG_REFERENCE.md`](CONFIG_REFERENCE.md)
 
 ## Demo scenario
 
@@ -28,7 +28,7 @@ Expected outputs:
 - A sequential thinking export in `.kilocode/thinking/`
 
 Template reference:
-- Handoff packet: [`templates/.kilocode/contracts/handoff/handoff_packet.md`](../templates/.kilocode/contracts/handoff/handoff_packet.md:1)
+- Handoff packet: [`templates/.kilocode/contracts/handoff/handoff_packet.md`](../templates/.kilocode/contracts/handoff/handoff_packet.md)
 
 ### Step 2: Execute task
 
@@ -45,8 +45,8 @@ Expected behavior:
 
 If a gate stalls/timeouts, execution routes to Fitter using a Line Fault Contract:
 
-- Fault contract: [`templates/.kilocode/contracts/line_health/line_fault_contract.md`](../templates/.kilocode/contracts/line_health/line_fault_contract.md:1)
-- Restoration contract: [`templates/.kilocode/contracts/line_health/restoration_contract.md`](../templates/.kilocode/contracts/line_health/restoration_contract.md:1)
+- Fault contract: [`templates/.kilocode/contracts/line_health/line_fault_contract.md`](../templates/.kilocode/contracts/line_health/line_fault_contract.md)
+- Restoration contract: [`templates/.kilocode/contracts/line_health/restoration_contract.md`](../templates/.kilocode/contracts/line_health/restoration_contract.md)
 
 ### Step 3: Respond to PR review
 
@@ -63,7 +63,7 @@ Expected outputs:
 - Explicit acknowledgements posted via `gh`
 
 Template reference:
-- Comment ledger template: [`templates/.kilocode/contracts/pr_review/comment_ledger.md`](../templates/.kilocode/contracts/pr_review/comment_ledger.md:1)
+- Comment ledger template: [`templates/.kilocode/contracts/pr_review/comment_ledger.md`](../templates/.kilocode/contracts/pr_review/comment_ledger.md)
 
 ## What to look for (as a reviewer)
 
@@ -79,4 +79,3 @@ Template reference:
 4) **Work is closed-loop**
 - Beads state is updated.
 - PR review feedback is acknowledged.
-

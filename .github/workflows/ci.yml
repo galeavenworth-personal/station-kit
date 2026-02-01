@@ -20,4 +20,4 @@ jobs:
       - name: Token audit
         run: python scripts/token_audit.py
       - name: Markdown link validation
-        run: python scripts/check_md_links.py --include-templates
+        run: python scripts/check_md_links.py --include-templates --github

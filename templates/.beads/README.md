@@ -9,4 +9,4 @@ This directory is a minimal **template** to help bootstrap Beads usage in a new 
 
 ## What this template provides
 
-- [`implementation-guides/`](./implementation-guides/:1): documents that workflows may link to.
+- [`implementation-guides/`](./implementation-guides/): documents that workflows may link to.

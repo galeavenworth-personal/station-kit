@@ -56,11 +56,11 @@ The agent cannot switch models/accounts programmatically. At the start of execut
 - `runtime_model_reported` (from `environment_details`)
 - `runtime_mode_reported` (mode slug)
 
-Include this parent-level runtime report in the final execution summary alongside subtask runtime reports. Use the canonical schema in [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:1).
+Include this parent-level runtime report in the final execution summary alongside subtask runtime reports. Use the canonical schema in [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md).
 
 ### Step 1: Load Handoff Packet
 
-The parent must have access to the handoff packet from `/orchestrate-start-task`. The canonical handoff packet schema is defined in [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:1).
+The parent must have access to the handoff packet from `/orchestrate-start-task`. The canonical handoff packet schema is defined in [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md).
 
 ```markdown
 # Expected Handoff Packet Structure
@@ -709,8 +709,8 @@ bd sync
 ## Related Workflows
 
 - [`/orchestrate-start-task`](./orchestrate-start-task.md) — Preparation phase (must complete first)
-- [Legacy: `/execute-task`](./legacy/execute-task.md:1) — Original monolithic version (reference-only)
-- [Legacy: `/fix-ci`](./legacy/fix-ci.md:1) — Monolithic CI-fix workflow (reference-only)
+- [Legacy: `/execute-task`](./legacy/execute-task.md) — Original monolithic version (reference-only)
+- [Legacy: `/fix-ci`](./legacy/fix-ci.md) — Monolithic CI-fix workflow (reference-only)
 
 ---
 
