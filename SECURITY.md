@@ -12,6 +12,8 @@ If you believe you have found a security vulnerability:
 
 1) Prefer using GitHub’s **Private Vulnerability Reporting** / **Security Advisories** (if enabled for the repo).
 2) If that is not available, open a GitHub issue with **minimal details** and request a private channel.
+3) If neither option is workable, email the maintainer at **[galeavenworth+oss@gmail.com](mailto:galeavenworth+oss@gmail.com)** with the subject line:
+   Security: Station Kit
 
 ### What to include
 
@@ -23,4 +25,3 @@ If you believe you have found a security vulnerability:
 ## Disclosure
 
 Please avoid public disclosure until a fix and release guidance are available.
-

@@ -100,6 +100,17 @@ Then replace `{{SK_*}}` placeholders using the guidance in [`docs/CONFIG_REFEREN
 - Workflow reference: [`docs/WORKFLOW_REFERENCE.md`](docs/WORKFLOW_REFERENCE.md:1)
 - Schemas: [`docs/SCHEMAS.md`](docs/SCHEMAS.md:1)
 
+## Community & contributions
+
+Station Kit is maintained as a reference implementation of a disciplined, auditable factory-line workflow for AI-assisted development. Contributions are welcome, but changes must align with the project’s goals:
+
+* explicit contracts and schemas
+* deterministic handoffs
+* bounded execution and failure handling
+* template-first, provider-flexible integrations
+
+Please review [`CONTRIBUTING.md`](CONTRIBUTING.md:1) before opening pull requests. Bugs and improvements are best filed as GitHub Issues. Security concerns should follow [`SECURITY.md`](SECURITY.md:1).
+
 ## Credits and attribution
 This kit is designed to be executed inside Kilo Code and assumes the following external components.
 

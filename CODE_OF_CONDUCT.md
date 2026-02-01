@@ -5,6 +5,8 @@ We as members, contributors, and leaders pledge to make participation in our com
 
 We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
 
+This is a technical collaboration space; please keep discussions focused on engineering, documentation, and project-related topics.
+
 ## Our Standards
 Examples of behavior that contributes to a positive environment for our community include:
 
