@@ -20,7 +20,7 @@ SK intentionally renames generic roles (for example, “Code” → “Code Fabr
 - focus the model on production changes + gates
 - create consistent expectations across subtasks
 
-See the mode definitions in [`templates/.kilocodemodes`](../templates/.kilocodemodes:1).
+See the mode definitions in [`templates/.kilocodemodes`](../templates/.kilocodemodes).
 
 ## Recommended model traits per station
 
@@ -47,7 +47,7 @@ When you change models, do it like an experiment.
 
 3) **Record runtime attestations**
 - Each workflow already requires `runtime_model_reported` and `runtime_mode_reported`.
-- Use the schema in [`docs/SCHEMAS.md`](SCHEMAS.md:1).
+- Use the schema in [`docs/SCHEMAS.md`](SCHEMAS.md).
 
 4) **Compare outcomes using operational metrics**
 - Gates pass rate and rework rate.
@@ -77,4 +77,3 @@ Outcomes:
 
 - If a model is strong at code but weak at human conversation, that can be a feature: keep it in `code` station and keep it away from planning.
 - Keep “pre-release surfaces” (like claims) explicitly optional unless you ship a real implementation.
-

@@ -11,20 +11,20 @@ SK is written to be **reviewable and auditable**: it makes the operating model e
 SK standardizes the operational discipline that shows up repeatedly in real work:
 
 1) **Multi-session continuity**
-- Explicit session import/export for prep and execution (see session export in [`templates/.kilocode/workflows/orchestrate-start-task.md`](../templates/.kilocode/workflows/orchestrate-start-task.md:299)).
+- Explicit session import/export for prep and execution (see session export in [`templates/.kilocode/workflows/orchestrate-start-task.md`](../templates/.kilocode/workflows/orchestrate-start-task.md#mandatory-export-session)).
 
 2) **Explicit task state**
-- A work-order system keeps identity/state outside of chat history (see Beads contract in [`templates/AGENTS.md`](../templates/AGENTS.md:1)).
+- A work-order system keeps identity/state outside of chat history (see Beads contract in [`templates/AGENTS.md`](../templates/AGENTS.md)).
 
 3) **Determinism and verification discipline**
 - Work is not “done” until gates pass and outputs are repeatable.
-- Line health exists because stalls/timeouts are normal in real pipelines (see line fault routing in [`templates/.kilocode/workflows/orchestrate-execute-task.md`](../templates/.kilocode/workflows/orchestrate-execute-task.md:408)).
+- Line health exists because stalls/timeouts are normal in real pipelines (see line fault routing in [`templates/.kilocode/workflows/orchestrate-execute-task.md`](../templates/.kilocode/workflows/orchestrate-execute-task.md#line-health-routing-fitter--line-fault--restoration--bounded-retry)).
 
 4) **Bounded failure handling**
 - Failures route to a maintenance role (Fitter) with explicit contracts, not endless retries.
 - See line-health contracts:
-  - [`templates/.kilocode/contracts/line_health/line_fault_contract.md`](../templates/.kilocode/contracts/line_health/line_fault_contract.md:1)
-  - [`templates/.kilocode/contracts/line_health/restoration_contract.md`](../templates/.kilocode/contracts/line_health/restoration_contract.md:1)
+- [`templates/.kilocode/contracts/line_health/line_fault_contract.md`](../templates/.kilocode/contracts/line_health/line_fault_contract.md)
+- [`templates/.kilocode/contracts/line_health/restoration_contract.md`](../templates/.kilocode/contracts/line_health/restoration_contract.md)
 
 5) **Supervised execution**
 - Parent tasks coordinate; subtasks do work; explicit STOP gates prevent uncontrolled implementation.

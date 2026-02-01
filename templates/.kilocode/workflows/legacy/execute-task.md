@@ -8,7 +8,6 @@ auto_execution_mode: 0
 **Status:** Deprecated / reference-only.
 
 Use the orchestrator-first workflow instead:
-- [`/orchestrate-execute-task`](../orchestrate-execute-task.md:1)
+- [`/orchestrate-execute-task`](../orchestrate-execute-task.md)
 
 This file exists to keep the kit standalone and avoid broken cross-references.
-

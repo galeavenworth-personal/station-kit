@@ -348,7 +348,7 @@ update_todo_list(
 
 ### Step 6: STOP and Present Plan
 
-Compile refactoring plan from analysis and planning subtasks. When recording runtime attestations or handoff packet details, use the canonical schema in [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md:1).
+Compile refactoring plan from analysis and planning subtasks. When recording runtime attestations or handoff packet details, use the canonical schema in [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md).
 
 ```markdown
 # Refactoring Plan: <component>
@@ -766,7 +766,7 @@ update_todo_list(
 
 ## Related Workflows
 
-- [Legacy: `/refactor`](./legacy/refactor.md:1) — Original monolithic version (for reference)
+- [Legacy: `/refactor`](./legacy/refactor.md) — Original monolithic version (for reference)
 - [`/orchestrate-start-task`](./orchestrate-start-task.md) — Task preparation pattern
 - [`/orchestrate-execute-task`](./orchestrate-execute-task.md) — Execution pattern
 

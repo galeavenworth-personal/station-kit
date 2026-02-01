@@ -13,7 +13,7 @@ SK’s “factory line” design assumes Kilo Code can:
 - Subtasks do isolated work in specialized roles.
 
 2) **Define project-specific roles as custom modes**
-- Modes are defined in [`templates/.kilocodemodes`](../templates/.kilocodemodes:1).
+- Modes are defined in [`templates/.kilocodemodes`](../templates/.kilocodemodes).
 - Each mode controls tool access and file edit scope.
 
 3) **Switch model/provider per role (per mode)**
@@ -32,10 +32,10 @@ SK’s “factory line” design assumes Kilo Code can:
 
 SK provides:
 
-- **Workflows** (invoked as slash commands) under [`templates/.kilocode/workflows/`](../templates/.kilocode/workflows/:1)
-- **Contracts** (explicit artifacts passed between stations) under [`templates/.kilocode/contracts/`](../templates/.kilocode/contracts/:1)
-- **Mode definitions** aligned to the workflow suite under [`templates/.kilocodemodes`](../templates/.kilocodemodes:1)
-- **Beads operator contract** under [`templates/AGENTS.md`](../templates/AGENTS.md:1)
+- **Workflows** (invoked as slash commands) under [`templates/.kilocode/workflows/`](../templates/.kilocode/workflows/)
+- **Contracts** (explicit artifacts passed between stations) under [`templates/.kilocode/contracts/`](../templates/.kilocode/contracts/)
+- **Mode definitions** aligned to the workflow suite under [`templates/.kilocodemodes`](../templates/.kilocodemodes)
+- **Beads operator contract** under [`templates/AGENTS.md`](../templates/AGENTS.md)
 
 ## The factory-line pattern (at a glance)
 
@@ -52,8 +52,8 @@ flowchart TD
 ```
 
 For concrete workflow definitions, see:
-- [`templates/.kilocode/workflows/orchestrate-start-task.md`](../templates/.kilocode/workflows/orchestrate-start-task.md:1)
-- [`templates/.kilocode/workflows/orchestrate-execute-task.md`](../templates/.kilocode/workflows/orchestrate-execute-task.md:1)
+- [`templates/.kilocode/workflows/orchestrate-start-task.md`](../templates/.kilocode/workflows/orchestrate-start-task.md)
+- [`templates/.kilocode/workflows/orchestrate-execute-task.md`](../templates/.kilocode/workflows/orchestrate-execute-task.md)
 
 ## What this is not
 
@@ -64,4 +64,3 @@ SK is not:
 - a hosted coding agent
 
 It is a **workflow + contract kit** designed to be executed inside Kilo Code.
-

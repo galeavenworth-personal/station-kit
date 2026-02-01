@@ -1,10 +1,10 @@
 # Workflow Reference
 
-This kit ships the following Orchestrator workflows under [`templates/.kilocode/workflows/`](../templates/.kilocode/workflows/:1). Each workflow is copy/paste-ready and can be invoked once installed.
+This kit ships the following Orchestrator workflows under [`templates/.kilocode/workflows/`](../templates/.kilocode/workflows/). Each workflow is copy/paste-ready and can be invoked once installed.
 
-Contract templates live under [`templates/.kilocode/contracts/`](../templates/.kilocode/contracts/:1). Canonical schemas live in [`docs/SCHEMAS.md`](SCHEMAS.md:1).
+Contract templates live under [`templates/.kilocode/contracts/`](../templates/.kilocode/contracts/). Canonical schemas live in [`docs/SCHEMAS.md`](SCHEMAS.md).
 
-## [`orchestrate-start-task.md`](../templates/.kilocode/workflows/orchestrate-start-task.md:1)
+## [`orchestrate-start-task.md`](../templates/.kilocode/workflows/orchestrate-start-task.md)
 **What it does:** Factory-line task preparation. Spawns discovery, exploration, and preparation subtasks with sequential thinking handoffs.
 
 **Prerequisites (reference factory stack):**
@@ -20,7 +20,7 @@ Contract templates live under [`templates/.kilocode/contracts/`](../templates/.k
 
 **Tooling:** Beads (`bd`) for task context and task state; Sequential Thinking MCP for stamped reasoning handoffs; Augment Code MCP for fast codebase retrieval.
 
-## [`orchestrate-execute-task.md`](../templates/.kilocode/workflows/orchestrate-execute-task.md:1)
+## [`orchestrate-execute-task.md`](../templates/.kilocode/workflows/orchestrate-execute-task.md)
 **What it does:** Factory-line execution. Loads a prep session, spawns implementation subtasks, runs tests, and completes quality gates with a final report.
 
 **Prerequisites (reference factory stack):**
@@ -37,7 +37,7 @@ Contract templates live under [`templates/.kilocode/contracts/`](../templates/.k
 
 **Tooling:** Beads (`bd`) for closing/syncing task status; Sequential Thinking MCP for session continuity; Augment Code MCP for retrieval; bounded gate runner placeholder via `{{SK_BOUNDED_GATE_RUNNER_CMD}}`.
 
-## [`orchestrate-refactor.md`](../templates/.kilocode/workflows/orchestrate-refactor.md:1)
+## [`orchestrate-refactor.md`](../templates/.kilocode/workflows/orchestrate-refactor.md)
 **What it does:** Multi-phase refactor workflow with analysis, planning (alternatives), implementation, test update, and optional architecture verification.
 
 **Prerequisites (reference factory stack):**
@@ -51,7 +51,7 @@ Contract templates live under [`templates/.kilocode/contracts/`](../templates/.k
 
 **Optional tooling:** None required.
 
-## [`orchestrate-respond-to-pr-review.md`](../templates/.kilocode/workflows/orchestrate-respond-to-pr-review.md:1)
+## [`orchestrate-respond-to-pr-review.md`](../templates/.kilocode/workflows/orchestrate-respond-to-pr-review.md)
 **What it does:** PR review response pipeline. Builds a comment ledger, plans clusters, implements fixes, runs gates, and acknowledges every comment via `gh`.
 
 **Prerequisites (reference factory stack):**
@@ -66,7 +66,7 @@ Contract templates live under [`templates/.kilocode/contracts/`](../templates/.k
 
 **Optional tooling:** GitHub CLI (`gh`) required for intake and acknowledgements.
 
-## [`fitter-line-health.md`](../templates/.kilocode/workflows/fitter-line-health.md:1)
+## [`fitter-line-health.md`](../templates/.kilocode/workflows/fitter-line-health.md)
 **What it does:** Fitter runbook for restoring deterministic, bounded gate execution. Receives a Line Fault Contract, applies workflow-layer mitigation, and returns a Restoration Contract.
 
 **Prerequisites (reference factory stack):**

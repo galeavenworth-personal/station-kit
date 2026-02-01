@@ -57,4 +57,8 @@ Pull requests are most likely to be accepted when they:
 
 - Documentation: Markdown.
 - Keep repo-relative links correct.
-- Prefer explicit references to canonical schemas in [`docs/SCHEMAS.md`](docs/SCHEMAS.md:1).
+- Prefer explicit references to canonical schemas in [`docs/SCHEMAS.md`](docs/SCHEMAS.md).
+- Link style (GitHub-compatible):
+  - Use repo-relative paths without `:line` suffixes (GitHub does not resolve `path:line` links).
+  - Prefer section anchors (e.g., [`docs/SCHEMAS.md`](docs/SCHEMAS.md#handoff-packet-minimal-skeleton)).
+  - Use `#L<line>` only when a stable heading anchor is not available.

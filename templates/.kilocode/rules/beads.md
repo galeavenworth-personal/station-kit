@@ -33,4 +33,4 @@ Beads is the authoritative source for task state.
 
 **Required:** You must install and configure the `bd` CLI for your repository. The kit does not install Beads.
 
-See [`AGENTS.md`](../../AGENTS.md:1) for the repository's required Beads workflow contract.
+See [`AGENTS.md`](../../AGENTS.md) for the repository's required Beads workflow contract.
