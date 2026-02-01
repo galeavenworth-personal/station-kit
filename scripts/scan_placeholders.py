@@ -22,6 +22,8 @@ DEFAULT_EXCLUDES = {
     "node_modules",
     "dist",
     "build",
+    "docs",
+    "pre-flight",
     "plans",
     "scripts",
     "private",
