@@ -13,6 +13,8 @@
 
 # Private planning (local only)
 /private/
+/pre-flight/
+/plans/
 
 # Python tooling (if used by consumers)
 /.venv/
