@@ -93,7 +93,6 @@ Then replace `{{SK_*}}` placeholders using the guidance in [`docs/CONFIG_REFEREN
 - Install instructions: [`docs/INSTALL.md`](docs/INSTALL.md)
 - Why Kilo Code: [`docs/WHY_KILO_CODE.md`](docs/WHY_KILO_CODE.md)
 - Model strategy: [`docs/MODEL_STRATEGY.md`](docs/MODEL_STRATEGY.md)
-- Ecosystem + staged public exposure: [`docs/ECOSYSTEM_STAGING.md`](docs/ECOSYSTEM_STAGING.md)
 - 10-minute walkthrough: [`docs/DEMO_WALKTHROUGH.md`](docs/DEMO_WALKTHROUGH.md)
 - Comparison matrix: [`docs/COMPARISON_MATRIX.md`](docs/COMPARISON_MATRIX.md)
 - Token reference: [`docs/CONFIG_REFERENCE.md`](docs/CONFIG_REFERENCE.md)
