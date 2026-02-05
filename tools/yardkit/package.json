@@ -1,0 +1,44 @@
+{
+	"name": "@station-kit/yardkit",
+	"version": "0.1.0",
+	"description": "Hybrid Supervisor - Deterministic control plane for multi-line agentic workflows",
+	"type": "module",
+	"main": "dist/index.js",
+	"bin": {
+		"yardkit": "./dist/cli.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"start": "node dist/cli.js",
+		"typecheck": "tsc --noEmit",
+		"format": "biome format src test",
+		"lint": "biome lint src test",
+		"test": "node --test test/**/*.test.js"
+	},
+	"keywords": [
+		"supervisor",
+		"control-plane",
+		"beads",
+		"workflow",
+		"orchestration"
+	],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"commander": "^12.1.0",
+		"execa": "^9.5.2",
+		"p-limit": "^6.1.0",
+		"pino": "^9.5.0",
+		"pino-pretty": "^13.0.0",
+		"zod": "^3.24.1"
+	},
+	"devDependencies": {
+		"@types/node": "^22.10.5",
+		"@biomejs/biome": "^1.9.4",
+		"typescript": "^5.7.3"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	}
+}

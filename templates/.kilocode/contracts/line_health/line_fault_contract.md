@@ -8,7 +8,7 @@ This payload is the only required context passed from Orchestrator → Fitter.
 
 ## Minimum MVP Fields
 
-- `gate_id` (string): stable identifier for the gate (e.g., `pytest-not-live`, `ruff-check`).
+- `gate_id` (string): stable identifier for the gate (e.g., `tests`, `lint`).
 - `invocation` (string): the exact command line that was executed.
 - `elapsed_seconds` (number): wall-clock time elapsed when the stop occurred.
 - `last_output_lines` (array[string]): tail of stdout/stderr (bounded; recommended `<= 50`).
@@ -19,8 +19,8 @@ This payload is the only required context passed from Orchestrator → Fitter.
 
 ```json
 {
-  "gate_id": "pytest-not-live",
-  "invocation": "{{SK_PYTHON_RUNNER}} -m pytest -m 'not live'",
+  "gate_id": "tests",
+  "invocation": "{{SK_GATE_TEST_CMD}}",
   "elapsed_seconds": 620,
   "last_output_lines": [
     "tests/integration/test_runtime_sampling_integration.py::test_sampling_distribution ...",

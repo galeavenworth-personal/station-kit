@@ -1,0 +1,24 @@
+{
+	"name": "station-kit",
+	"private": true,
+	"type": "module",
+	"engines": {
+		"node": ">=20.0.0"
+	},
+	"workspaces": ["tools/yardkit"],
+	"scripts": {
+		"format": "biome format --write .",
+		"format:check": "biome check --formatter-enabled=true --linter-enabled=false .",
+		"lint": "biome check --linter-enabled=true --formatter-enabled=false .",
+		"typecheck": "tsc --noEmit -p tools/yardkit/tsconfig.json",
+		"test": "node --test tools/yardkit/test/**/*.test.js",
+		"check:placeholders": "node scripts/scan_placeholders.cjs --include-docs --scan-code-blocks",
+		"check:tokens": "node scripts/token_audit.cjs --templates templates --allowlist docs/CONFIG_REFERENCE.md",
+		"check:links": "node scripts/check_md_links.cjs --include-templates --github",
+		"ci": "npm run check:placeholders && npm run check:tokens && npm run check:links && npm run format:check && npm run lint && npm run typecheck && npm run test"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"typescript": "^5.7.3"
+	}
+}

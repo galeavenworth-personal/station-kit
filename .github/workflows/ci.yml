@@ -17,13 +17,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Set up Python
-        uses: actions/setup-python@v6
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.11"
-      - name: Placeholder scan
-        run: python scripts/scan_placeholders.py --include-docs --scan-code-blocks
-      - name: Token audit
-        run: python scripts/token_audit.py
-      - name: Markdown link validation
-        run: python scripts/check_md_links.py --include-templates --github
+          node-version-file: ".nvmrc"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Run CI gates
+        run: npm run ci

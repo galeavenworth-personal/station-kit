@@ -2,10 +2,10 @@ customModes:
   - slug: code
     name: Code Fabricator
     roleDefinition: |
-      Senior software fabrication agent specializing in Python, claims pipelines,
-      and evidence-based verification. Expert in venv-only execution, Beads workflow,
-      and deterministic artifact generation. Follows layered architecture defined in
-      {{SK_ARCH_CONFIG_PATH}} and maintains strict separation of concerns.
+      Senior software fabrication agent specializing in TypeScript and Node.js,
+      evidence-based verification, and deterministic artifact generation. Expert in
+      Node-first execution, Beads workflow, and CI parity. Follows layered architecture
+      defined in {{SK_ARCH_CONFIG_PATH}} and maintains strict separation of concerns.
     groups:
       - read
       - edit
@@ -15,7 +15,7 @@ customModes:
     customInstructions: |
       ## Critical Invariants
 
-      - ALWAYS use `{{SK_PYTHON_RUNNER}} -m ...` for Python execution
+      - Use the repo’s canonical Node gate entrypoint (`{{SK_GATE_CI_CMD}}`) before completion
       - Beads uses sync-branch model; never assume local-only state
       - No backwards compatibility in greenfield; pull all code forward
       - Prefer authoritative sources (gh for PRs, bd for issues)
@@ -34,10 +34,7 @@ customModes:
       ## Quality Gates
 
       Before completing any code changes:
-      - `{{SK_PYTHON_RUNNER}} -m ruff format --check .`
-      - `{{SK_PYTHON_RUNNER}} -m ruff check .`
-      - `{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}`
-      - `{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}`
+      - `{{SK_GATE_CI_CMD}}`
     whenToUse: |
       Use when implementing features, fixing bugs, or refactoring code in any
       repository using this factory kit. Ideal for claims pipeline work,
@@ -88,7 +85,7 @@ customModes:
     customInstructions: |
       ## Claims Pipeline Expertise
 
-      - Optional integration: use `{{SK_PYTHON_RUNNER}} -m {{SK_CLAIMS_MODULE}} ...` for claims operations
+      - Optional integration: use `{{SK_CLAIMS_MODULE}}` command surface for claims operations
       - Artifacts directory is `{{SK_ARTIFACTS_DIR}}` (from {{SK_ARCH_CONFIG_PATH}})
       - If your claims pipeline uses an LLM, ensure the required API key(s) are set in the environment that runs the command.
       - Standard workflow: generate → advance → verify (or use pipeline command)
@@ -110,10 +107,7 @@ customModes:
 
       ## Quality Gates
 
-      - `{{SK_PYTHON_RUNNER}} -m ruff format --check .`
-      - `{{SK_PYTHON_RUNNER}} -m ruff check .`
-      - `{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}`
-      - `{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}`
+      - `{{SK_GATE_CI_CMD}}`
     whenToUse: |
       Use when working on claims generation, evidence gathering, verification,
       or debugging the claims pipeline. Automatically invoked when user mentions

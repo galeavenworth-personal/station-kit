@@ -6,9 +6,12 @@ This document is the single source of truth for every `{{SK_*}}` placeholder use
 
 ```text
 # SK_TOKEN_ALLOWLIST
-SK_PYTHON_RUNNER
-SK_MYPY_TARGET
-SK_PYTEST_ARGS
+SK_GATE_CI_CMD
+SK_GATE_FMT_CHECK_CMD
+SK_GATE_FMT_CMD
+SK_GATE_LINT_CMD
+SK_GATE_TYPECHECK_CMD
+SK_GATE_TEST_CMD
 SK_BOUNDED_GATE_RUNNER_CMD
 SK_FITTER_VERSION
 SK_FITTER_DESCRIPTION
@@ -20,21 +23,24 @@ SK_ARCH_VERIFY_CMD
 
 | Token | Purpose | Recommended default | Example |
 | --- | --- | --- | --- |
-| `{{SK_PYTHON_RUNNER}}` | Python invocation used for gates. Required convention across all kit docs/examples. | `python` | `python` |
-| `{{SK_MYPY_TARGET}}` | Target passed to `mypy`. | `.` or `your_package` | `your_package` |
-| `{{SK_PYTEST_ARGS}}` | Extra args passed to `pytest`. | `-m "not live"` or `tests/` | `-m "not live"` |
+| `{{SK_GATE_CI_CMD}}` | Canonical gate entrypoint (format/lint/typecheck/test) for local + CI. | `npm run ci` | `npm run ci` |
+| `{{SK_GATE_FMT_CHECK_CMD}}` | Format check command. | `npm run format:check` | `npm run format:check` |
+| `{{SK_GATE_FMT_CMD}}` | Format fix command. | `npm run format` | `npm run format` |
+| `{{SK_GATE_LINT_CMD}}` | Lint command. | `npm run lint` | `npm run lint` |
+| `{{SK_GATE_TYPECHECK_CMD}}` | Type check command. | `npm run typecheck` | `npm run typecheck` |
+| `{{SK_GATE_TEST_CMD}}` | Test command. | `npm run test` | `npm run test` |
 | `{{SK_BOUNDED_GATE_RUNNER_CMD}}` | Placeholder command representing a bounded gate runner (timeouts/stalls). | `./scripts/run-gates-bounded.sh` | `./scripts/run-gates-bounded.sh` |
 | `{{SK_FITTER_VERSION}}` | Version label for the fitter config template. | `0.1.0` | `0.1.0` |
 | `{{SK_FITTER_DESCRIPTION}}` | Description for the fitter config template. | `Station Kit fitter gate profile` | `Station Kit fitter gate profile` |
 | `{{SK_ARCH_CONFIG_PATH}}` | Path to your architecture/layering config file (referenced by mode instructions). | `./architecture.toml` | `./architecture.toml` |
 | `{{SK_ARTIFACTS_DIR}}` | Directory where analysis artifacts (and/or generated outputs) are stored. | `./.artifacts` | `./.artifacts` |
-| `{{SK_CLAIMS_MODULE}}` | Python module invoked for optional “claims” operations (if your project has them). | `your_project.claims` | `your_project.claims` |
-| `{{SK_ARCH_VERIFY_CMD}}` | Command used to verify architecture constraints (stored in fitter config). | `{{SK_PYTHON_RUNNER}} -m your_arch_tool verify` | `{{SK_PYTHON_RUNNER}} -m your_arch_tool verify` |
+| `{{SK_CLAIMS_MODULE}}` | Command surface invoked for optional claims operations (if your project has them). | `your_project.claims` | `your_project.claims` |
+| `{{SK_ARCH_VERIFY_CMD}}` | Command used to verify architecture constraints (stored in fitter config). | `./scripts/verify_architecture.sh` | `./scripts/verify_architecture.sh` |
 
 ### Optional tokens
 These tokens are used only in optional sections or optional integrations:
 - `{{SK_BOUNDED_GATE_RUNNER_CMD}}` — bounded gate execution placeholder in the execute workflow.
-- `{{SK_CLAIMS_MODULE}}` — optional “claims” module entrypoint (only if your project has a claims pipeline).
+- `{{SK_CLAIMS_MODULE}}` — optional claims command surface (only if your project has a claims pipeline).
 - `{{SK_ARCH_VERIFY_CMD}}` — optional architecture verification command; if you have no architecture gate, set it to a safe no-op (e.g., `true`).
 
 ## Template mapping: `.kilocodemodes`
@@ -76,38 +82,42 @@ version = "{{SK_FITTER_VERSION}}"
 description = "{{SK_FITTER_DESCRIPTION}}"
 
 [defaults]
-python_runner = "{{SK_PYTHON_RUNNER}}"
-mypy_target = "{{SK_MYPY_TARGET}}"
-pytest_args = "{{SK_PYTEST_ARGS}}"
+gate_fmt_check_cmd = "{{SK_GATE_FMT_CHECK_CMD}}"
+gate_fmt_cmd = "{{SK_GATE_FMT_CMD}}"
+gate_lint_cmd = "{{SK_GATE_LINT_CMD}}"
+gate_typecheck_cmd = "{{SK_GATE_TYPECHECK_CMD}}"
+gate_test_cmd = "{{SK_GATE_TEST_CMD}}"
 arch_verify_cmd = "{{SK_ARCH_VERIFY_CMD}}"
 
 [[gates]]
-id = "ruff_format_check"
-label = "Ruff format check"
-invocation = "{{SK_PYTHON_RUNNER}} -m ruff format --check ."
+id = "format_check"
+label = "Format check"
+invocation = "{{SK_GATE_FMT_CHECK_CMD}}"
 
 [[gates]]
-id = "ruff_check"
-label = "Ruff check"
-invocation = "{{SK_PYTHON_RUNNER}} -m ruff check ."
+id = "lint"
+label = "Lint"
+invocation = "{{SK_GATE_LINT_CMD}}"
 
 [[gates]]
-id = "mypy"
-label = "Mypy type check"
-invocation = "{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}"
+id = "typecheck"
+label = "Type check"
+invocation = "{{SK_GATE_TYPECHECK_CMD}}"
 
 [[gates]]
-id = "pytest"
-label = "Pytest"
-invocation = "{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}"
+id = "test"
+label = "Test"
+invocation = "{{SK_GATE_TEST_CMD}}"
 ```
 
 ### Token → field mapping
 - `{{SK_FITTER_VERSION}}` → `[meta].version`
 - `{{SK_FITTER_DESCRIPTION}}` → `[meta].description`
-- `{{SK_PYTHON_RUNNER}}` → `[defaults].python_runner` and each gate `invocation`
-- `{{SK_MYPY_TARGET}}` → `[defaults].mypy_target` and the `mypy` gate invocation
-- `{{SK_PYTEST_ARGS}}` → `[defaults].pytest_args` and the `pytest` gate invocation
+- `{{SK_GATE_FMT_CHECK_CMD}}` → `[defaults].gate_fmt_check_cmd` and `format_check` invocation
+- `{{SK_GATE_FMT_CMD}}` → `[defaults].gate_fmt_cmd`
+- `{{SK_GATE_LINT_CMD}}` → `[defaults].gate_lint_cmd` and `lint` invocation
+- `{{SK_GATE_TYPECHECK_CMD}}` → `[defaults].gate_typecheck_cmd` and `typecheck` invocation
+- `{{SK_GATE_TEST_CMD}}` → `[defaults].gate_test_cmd` and `test` invocation
 - `{{SK_ARCH_VERIFY_CMD}}` → `[defaults].arch_verify_cmd`
 
 ## Notes
@@ -133,19 +143,11 @@ In that design, *architecture verification* looks like: regenerate artifacts →
 Example (adapt to your artifacts dir and filenames):
 
 ```bash
-# 1) Generate/update artifacts
-{{SK_PYTHON_RUNNER}} -m your_arch_tool generate .
+# 1) Generate/update artifacts (tool-specific)
+./scripts/generate_arch_artifacts.sh
 
-# 2) Fail if layer violations exist
-{{SK_PYTHON_RUNNER}} - <<'PY'
-import json, sys
-from pathlib import Path
-p = Path("{{SK_ARTIFACTS_DIR}}") / "deps_summary.json"
-d = json.loads(p.read_text())
-violations = d.get("layer_violations", [])
-print(f"layer_violations={len(violations)}")
-sys.exit(1 if violations else 0)
-PY
+# 2) Fail if layer violations exist (example)
+node ./scripts/check_arch_violations.js
 ```
 
 If you don’t have an architecture verifier yet, set `{{SK_ARCH_VERIFY_CMD}}` to a safe no-op (`true`) so the workflow is explicit about skipping the step.
@@ -179,8 +181,8 @@ Recommended public-facing posture:
 Your project can make claims feel real by providing a stable CLI contract such as:
 
 ```bash
-{{SK_PYTHON_RUNNER}} -m {{SK_CLAIMS_MODULE}} generate --artifacts-dir {{SK_ARTIFACTS_DIR}}
-{{SK_PYTHON_RUNNER}} -m {{SK_CLAIMS_MODULE}} verify --artifacts-dir {{SK_ARTIFACTS_DIR}}
+{{SK_CLAIMS_MODULE}} generate --artifacts-dir {{SK_ARTIFACTS_DIR}}
+{{SK_CLAIMS_MODULE}} verify --artifacts-dir {{SK_ARTIFACTS_DIR}}
 ```
 
 
@@ -208,21 +210,7 @@ Notes on secrets/LLM keys:
 Run this audit from the kit repo root after copy/paste to confirm there are no undocumented tokens:
 
 ```bash
-python - <<'PY'
-import os, re
-root = "templates"
-tokens=set()
-for dirpath, dirnames, filenames in os.walk(root):
-    for name in filenames:
-        path=os.path.join(dirpath,name)
-        try:
-            s=open(path,"r",encoding="utf-8",errors="ignore").read()
-        except Exception:
-            continue
-        for m in re.findall(r"\{\{\s*(SK_[A-Z0-9_]+)\s*\}\}", s):
-            tokens.add(m)
-print("\n".join(sorted(tokens)))
-PY
+node scripts/token_audit.cjs --templates templates --allowlist docs/CONFIG_REFERENCE.md
 ```
 
 Verify that every token in the output appears in the table above. If not, update this document before sharing the kit.
