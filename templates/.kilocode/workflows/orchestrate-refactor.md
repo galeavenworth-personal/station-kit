@@ -453,7 +453,7 @@ Follow the implementation steps from the plan:
 
 For each step:
 1. Make targeted changes
-2. Run `{{SK_PYTHON_RUNNER}} -m ruff format --check .` and `{{SK_PYTHON_RUNNER}} -m ruff check .`
+2. Run `{{SK_GATE_FMT_CHECK_CMD}}` and `{{SK_GATE_LINT_CMD}}`
 3. Verify imports and types
 4. Run affected tests
 
@@ -467,9 +467,9 @@ Follow migration strategy:
 ## Step 4: Validation
 
 ```bash
-{{SK_PYTHON_RUNNER}} -m ruff format --check .
-{{SK_PYTHON_RUNNER}} -m ruff check .
-{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}
+{{SK_GATE_FMT_CHECK_CMD}}
+{{SK_GATE_LINT_CMD}}
+{{SK_GATE_TYPECHECK_CMD}}
 ```
 
 ## Step 5: Export Progress
@@ -556,7 +556,7 @@ new_task(
 ## Step 4: Run Tests
 
 ```bash
-{{SK_PYTHON_RUNNER}} -m pytest tests/ -v
+{{SK_GATE_TEST_CMD}}
 ```
 
 ## Step 5: Export Progress
@@ -687,10 +687,10 @@ update_todo_list(
 Run final quality gates:
 
 ```bash
-{{SK_PYTHON_RUNNER}} -m ruff format --check .
-{{SK_PYTHON_RUNNER}} -m ruff check .
-{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}
-{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}
+{{SK_GATE_FMT_CHECK_CMD}}
+{{SK_GATE_LINT_CMD}}
+{{SK_GATE_TYPECHECK_CMD}}
+{{SK_GATE_TEST_CMD}}
 ```
 
 Compile final report:

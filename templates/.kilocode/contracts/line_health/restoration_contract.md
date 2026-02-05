@@ -17,13 +17,13 @@ Orchestrator uses this contract to decide whether to retry the blocked station (
 
 ```json
 {
-  "gate_id": "pytest-not-live",
+  "gate_id": "tests",
   "mitigation_applied": [
     "Increase no-output (stall) budget from 60s → 180s for pytest gates",
     "Adjust invocation to show progress: add '-vv' to reduce false stall classification"
   ],
   "verification_run": {
-    "invocation": "{{SK_PYTHON_RUNNER}} -m pytest -m 'not live' -vv",
+    "invocation": "{{SK_GATE_TEST_CMD}}",
     "status": "PASS",
     "elapsed_seconds": 410
   },

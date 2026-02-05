@@ -3,27 +3,29 @@ version = "{{SK_FITTER_VERSION}}"
 description = "{{SK_FITTER_DESCRIPTION}}"
 
 [defaults]
-python_runner = "{{SK_PYTHON_RUNNER}}"
-mypy_target = "{{SK_MYPY_TARGET}}"
-pytest_args = "{{SK_PYTEST_ARGS}}"
+gate_fmt_check_cmd = "{{SK_GATE_FMT_CHECK_CMD}}"
+gate_fmt_cmd = "{{SK_GATE_FMT_CMD}}"
+gate_lint_cmd = "{{SK_GATE_LINT_CMD}}"
+gate_typecheck_cmd = "{{SK_GATE_TYPECHECK_CMD}}"
+gate_test_cmd = "{{SK_GATE_TEST_CMD}}"
 arch_verify_cmd = "{{SK_ARCH_VERIFY_CMD}}"
 
 [[gates]]
-id = "ruff_format_check"
-label = "Ruff format check"
-invocation = "{{SK_PYTHON_RUNNER}} -m ruff format --check ."
+id = "format_check"
+label = "Format check"
+invocation = "{{SK_GATE_FMT_CHECK_CMD}}"
 
 [[gates]]
-id = "ruff_check"
-label = "Ruff check"
-invocation = "{{SK_PYTHON_RUNNER}} -m ruff check ."
+id = "lint"
+label = "Lint"
+invocation = "{{SK_GATE_LINT_CMD}}"
 
 [[gates]]
-id = "mypy"
-label = "Mypy type check"
-invocation = "{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}"
+id = "typecheck"
+label = "Type check"
+invocation = "{{SK_GATE_TYPECHECK_CMD}}"
 
 [[gates]]
-id = "pytest"
-label = "Pytest"
-invocation = "{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}"
+id = "test"
+label = "Test"
+invocation = "{{SK_GATE_TEST_CMD}}"

@@ -1,0 +1,28 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"formatter": {
+		"enabled": true
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true
+		}
+	},
+	"files": {
+		"ignore": [
+			"artifacts/**",
+			"tools/yardkit/dist/**",
+			"tools/yardkit/node_modules/**",
+			"node_modules/**",
+			".kilocode/**",
+			".beads/**",
+			"**/*.min.*"
+		]
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single"
+		}
+	}
+}

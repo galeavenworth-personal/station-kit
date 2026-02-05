@@ -255,8 +255,8 @@ mcp--sequentialthinking--process_thought(
 ## Step 6: Validate
 
 ```bash
-{{SK_PYTHON_RUNNER}} -m ruff format --check .
-{{SK_PYTHON_RUNNER}} -m ruff check .
+{{SK_GATE_FMT_CHECK_CMD}}
+{{SK_GATE_LINT_CMD}}
 ```
 
 ## Step 7: Export Progress
@@ -354,7 +354,7 @@ Based on implementation:
 ## Step 3: Run Tests
 
 ```bash
-{{SK_PYTHON_RUNNER}} -m pytest tests/ -v
+{{SK_GATE_TEST_CMD}}
 ```
 
 ## Step 4: Export Progress
@@ -483,46 +483,44 @@ This workflow does not require any specific repository analysis tool. Gate invoc
 ## Gate 1: Format Check
 
 ```bash
-{{SK_PYTHON_RUNNER}} -m ruff format --check .
+{{SK_GATE_FMT_CHECK_CMD}}
 ```
 
 If fails:
 ```bash
-{{SK_PYTHON_RUNNER}} -m ruff format .
+{{SK_GATE_FMT_CMD}}
 ```
 
 ## Gate 2: Lint Check
 
 ```bash
-{{SK_PYTHON_RUNNER}} -m ruff check .
+{{SK_GATE_LINT_CMD}}
 ```
 
 **If fails, DO NOT add global ignores.** Use clean fixes:
 
 | Issue | Clean Fix |
 |-------|-----------|
-| TC003 | Per-file-ignores if runtime import |
-| EM102/TRY003 | Extract message to variable |
+| Biome rule | Adjust code to satisfy lint rule |
 | Complexity | Extract Method pattern |
 
 ## Gate 3: Type Check
 
 ```bash
-{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}
+{{SK_GATE_TYPECHECK_CMD}}
 ```
 
-**If fails, DO NOT use `# type: ignore`.** Use clean fixes:
+**If fails, DO NOT use blanket ignores.** Use clean fixes:
 
 | Issue | Clean Fix |
 |-------|-----------|
-| Missing stubs | Per-module override in pyproject.toml |
-| X \| None → X | Ternary + guard pattern |
+| Missing types | Add types or narrow values |
 | Incompatible types | Fix actual mismatch |
 
 ## Gate 4: Test Suite
 
 ```bash
-{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}
+{{SK_GATE_TEST_CMD}}
 ```
 
 All tests must pass.

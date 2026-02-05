@@ -1,25 +1,25 @@
-# Virtual Environment Mandate
+# Node Environment Mandate
 
-You must use the already activated virtual environment for all Python commands and packages. No exceptions.
+You must use the project’s pinned Node version and local package manager for all commands. No exceptions.
 
 I have other projects that depend on the exact versions of packages installed, and global package management can break those projects.
 
 ## Best Practices
 
-- Always use `{{SK_PYTHON_RUNNER}} -m ...` for Python execution
+- Always use the repo gate entrypoints (e.g., `{{SK_GATE_CI_CMD}}`)
 - Never install packages globally
-- Verify virtual environment is activated before running commands
-- Use `which python` to confirm you're using the project's Python
+- Verify the Node version matches `.nvmrc`
+- Use `node --version` and `npm --version` to confirm the toolchain
 
 ## Examples
 
 ```bash
 # Correct
-{{SK_PYTHON_RUNNER}} -m pytest
-{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}
-{{SK_PYTHON_RUNNER}} -m ruff check .
+{{SK_GATE_CI_CMD}}
+{{SK_GATE_TYPECHECK_CMD}}
+{{SK_GATE_LINT_CMD}}
 
 # Incorrect
-python -c "import your_project; your_project.main()"  # May use wrong Python
-pip install package  # May install globally
+node -e "console.log(process.version)"  # Bypasses pinned version policy
+npm install -g package  # May install globally
 ```

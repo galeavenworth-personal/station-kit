@@ -19,7 +19,7 @@ auto_execution_mode: 3
 │  ├── Subtask A (Architect): Review Intake + Comment Ledger           │
 │  ├── Subtask B (Architect): Response Planning (sequential thinking)  │
 │  ├── Subtask C..N (Code): Implement comment clusters                 │
-│  ├── Subtask X (Code): Quality gates (format/lint/mypy/pytest)       │
+│  ├── Subtask X (Code): Quality gates (format/lint/typecheck/test)    │
 │  ├── Subtask Y (Code): Acknowledge every ledger row via gh replies   │
 │  └── Complete: summary + next steps                                  │
 └──────────────────────────────────────────────────────────────────────┘
@@ -52,7 +52,7 @@ update_todo_list(
 [ ] Subtask A: Intake (fetch review feedback + build comment ledger)
 [ ] Subtask B: Plan responses (sequential thinking + export session)
 [ ] Subtask C: Implement clusters (1..N)
-[ ] Subtask D: Quality gates (ruff/mypy/pytest)
+[ ] Subtask D: Quality gates (format/lint/typecheck/test)
 [ ] Subtask E: Acknowledge every ledger row (gh replies + PR comment summary)
 [ ] Complete: Present results + reminders
 """
@@ -189,10 +189,7 @@ new_task(
 **Objective:** Run and pass all quality gates.
 
 ```bash
-{{SK_PYTHON_RUNNER}} -m ruff format --check .
-{{SK_PYTHON_RUNNER}} -m ruff check .
-{{SK_PYTHON_RUNNER}} -m mypy {{SK_MYPY_TARGET}}
-{{SK_PYTHON_RUNNER}} -m pytest {{SK_PYTEST_ARGS}}
+{{SK_GATE_CI_CMD}}
 ```
 
 **Completion:** attempt_completion with PASS/FAIL for each gate and any fixes applied.
