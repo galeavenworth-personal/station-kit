@@ -127,3 +127,106 @@ This document is the single authoritative schema reference for the Station Kit. 
 3. `ready_to_ack` → fix/decision complete, awaiting public acknowledgement
 4. `acknowledged` → reply posted
 5. `wontfix` → explicitly declined with rationale
+
+---
+
+## Yardkit lock record (object)
+
+**Purpose:** Record ownership for a task line run. Aligned with `LockInfo`.
+
+```json
+{
+  "taskId": "TASK-123",
+  "runId": "550e8400-e29b-41d4-a716-446655440000",
+  "pid": 12345,
+  "hostname": "worker-01",
+  "timestamp": "2026-02-04T10:30:00.000Z"
+}
+```
+
+### Fields
+- `taskId` (string, required): Beads task identifier.
+- `runId` (string, required): UUID for the line run.
+- `pid` (number, required): Process ID of the runner.
+- `hostname` (string, required): Hostname of the runner.
+- `timestamp` (string, required): RFC3339 timestamp string.
+
+---
+
+## Yardkit workspace record (object)
+
+**Purpose:** Describe the workspace assigned to a line run. Aligned with `WorkspaceInfo`.
+
+```json
+{
+  "path": "/workspaces/yardkit/run-550e8400-e29b-41d4-a716-446655440000",
+  "type": "worktree",
+  "runId": "550e8400-e29b-41d4-a716-446655440000",
+  "taskId": "TASK-123"
+}
+```
+
+### Fields
+- `path` (string, required): Filesystem path to the workspace root.
+- `type` (string, required): `worktree` | `clone` | `container`.
+- `runId` (string, required): UUID for the line run.
+- `taskId` (string, required): Beads task identifier.
+
+---
+
+## Yardkit run summary (object)
+
+**Purpose:** Final result for a line run. Serialized from `RunResult` with RFC3339 timestamps.
+
+```json
+{
+  "runId": "550e8400-e29b-41d4-a716-446655440000",
+  "taskId": "TASK-123",
+  "status": "success",
+  "phase": "close",
+  "startTime": "2026-02-04T10:30:00.000Z",
+  "endTime": "2026-02-04T11:20:18.901Z",
+  "exitCode": 0,
+  "events": [
+    {
+      "timestamp": "2026-02-04T10:30:00.000Z",
+      "phase": "claim",
+      "event": "phase_start"
+    }
+  ]
+}
+```
+
+### Fields
+- `runId` (string, required): UUID for the line run.
+- `taskId` (string, required): Beads task identifier.
+- `status` (string, required): `success` | `failed`.
+- `phase` (string, required): `claim` | `prep` | `execute` | `gates` | `close`.
+- `startTime` (string, required): RFC3339 timestamp string.
+- `endTime` (string, required): RFC3339 timestamp string.
+- `exitCode` (number, required): Exit code from the line run.
+- `events` (array, required): Array of `Yardkit run event` objects.
+- `error` (string, optional): Error message if status is `failed`.
+
+---
+
+## Yardkit run event (object)
+
+**Purpose:** One event in the line run stream. Serialized from `RunEvent` with RFC3339 timestamps.
+
+```json
+{
+  "timestamp": "2026-02-04T10:30:00.000Z",
+  "phase": "claim",
+  "event": "phase_start",
+  "data": {
+    "duration": 5123
+  }
+}
+```
+
+### Fields
+- `timestamp` (string, required): RFC3339 timestamp string.
+- `phase` (string, required): `claim` | `prep` | `execute` | `gates` | `close`.
+- `event` (string, required): Event name (`phase_start`, `phase_complete`, `phase_failed`, etc.).
+- `data` (object, optional): Event-specific payload.
