@@ -101,6 +101,8 @@ artifacts/supervisor/<run-id>/
   └── stderr.log             # Standard error
 ```
 
+See also: `docs/YARDKIT_PARALLEL_LINES_MVP.md`
+
 Sequential thinking sessions are exported to:
 
 ```
