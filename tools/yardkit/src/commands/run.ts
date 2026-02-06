@@ -5,6 +5,7 @@ import { Command } from 'commander';
 import { execa } from 'execa';
 import type { Config } from '../config.js';
 import { logger } from '../logger.js';
+import { assertWorkflowsInSync } from '../preflight/workflowPreflight.js';
 import type { LinePhase, RunEvent, RunResult } from '../types.js';
 
 interface RunOptions {
@@ -177,11 +178,13 @@ async function claimTask(config: Config, taskId: string): Promise<void> {
 }
 
 async function runKiloPrepPhase(
-	_config: Config,
+	config: Config,
 	taskId: string,
 	_artifactDir: string,
 ): Promise<void> {
 	logger.debug({ taskId }, 'Running Kilo prep phase (orchestrate-start-task)');
+
+	await assertWorkflowsInSync({ repoRoot: config.repoRoot ?? process.cwd() });
 
 	// TODO: Actual Kilo CLI invocation
 	// This is a placeholder - needs actual kilocode CLI integration
