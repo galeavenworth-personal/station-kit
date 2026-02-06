@@ -21,6 +21,8 @@ Store the ledger as JSON (array of rows) plus optional metadata.
       "row_id": "PRR-001",
       "type": "review",
       "comment_id": "<gh_comment_id>",
+      "thread_id": "<gh_review_thread_id>",
+      "comment_url": "<comment_url>",
       "path": "<file-path>",
       "line": 123,
       "side": "RIGHT",

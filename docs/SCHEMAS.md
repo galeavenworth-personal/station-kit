@@ -93,6 +93,8 @@ This document is the single authoritative schema reference for the Station Kit. 
   "row_id": "PRR-001",
   "type": "review|conversation",
   "comment_id": "<gh_comment_id_or_null>",
+  "thread_id": "<gh_review_thread_id_or_null>",
+  "comment_url": "<comment_url_or_null>",
   "path": "<file-path-or-null>",
   "line": 123,
   "side": "RIGHT|LEFT|UNKNOWN",
@@ -110,6 +112,8 @@ This document is the single authoritative schema reference for the Station Kit. 
 - `row_id` (string, required): Stable ID `PRR-001`, `PRR-002`, ...; **never renumber** between updates.
 - `type` (string, required): `review` (line-specific) or `conversation` (PR-level comment).
 - `comment_id` (string|null): Required for `type=review` (GitHub review comment ID).
+- `thread_id` (string|null): Required for `type=review` (GitHub review thread ID).
+- `comment_url` (string|null): Required for `type=review` (URL of the specific comment).
 - `path` (string|null): Required for `type=review`.
 - `line` (number|null): Required for `type=review`.
 - `side` (string): `RIGHT`, `LEFT`, or `UNKNOWN`.
@@ -127,6 +131,74 @@ This document is the single authoritative schema reference for the Station Kit. 
 3. `ready_to_ack` → fix/decision complete, awaiting public acknowledgement
 4. `acknowledged` → reply posted
 5. `wontfix` → explicitly declined with rationale
+
+---
+
+## PR review thread inventory (object)
+
+**Purpose:** Enumerate every review thread so ledger and acknowledgements can be reconciled.
+
+```json
+{
+  "pr_number": 123,
+  "repo": "<owner>/<repo>",
+  "threads": [
+    {
+      "thread_id": "<gh_review_thread_id>",
+      "comment_url": "<thread_or_comment_url>",
+      "is_resolved": false,
+      "path": "<file-path-or-null>",
+      "line": 123,
+      "side": "RIGHT|LEFT|UNKNOWN",
+      "author": "<login>",
+      "comment_ids": ["<comment_id>"]
+    }
+  ]
+}
+```
+
+### Field requirements
+- `pr_number` (number, required): Pull request number.
+- `repo` (string, required): `owner/repo`.
+- `threads` (array, required): Collection of thread records.
+- `thread_id` (string, required): GitHub review thread ID (GraphQL).
+- `comment_url` (string, required): URL to a comment in the thread.
+- `is_resolved` (boolean, required): Thread resolved state.
+- `path` (string|null): File path for line-specific threads.
+- `line` (number|null): Line number for line-specific threads.
+- `side` (string): `RIGHT`, `LEFT`, or `UNKNOWN`.
+- `author` (string, required): GitHub login for the thread author.
+- `comment_ids` (array, required): Review comment IDs in the thread.
+
+---
+
+## PR review ack matrix (object)
+
+**Purpose:** Map every review thread to an action and acknowledgement reference.
+
+```json
+{
+  "pr_number": 123,
+  "repo": "<owner>/<repo>",
+  "rows": [
+    {
+      "thread_id": "<gh_review_thread_id>",
+      "action": "fix|clarify|decline|defer",
+      "ack_reference": "<reply_url_or_comment_id>",
+      "ledger_row_ids": ["PRR-001"]
+    }
+  ]
+}
+```
+
+### Field requirements
+- `pr_number` (number, required): Pull request number.
+- `repo` (string, required): `owner/repo`.
+- `rows` (array, required): Collection of ack rows.
+- `thread_id` (string, required): GitHub review thread ID.
+- `action` (string, required): `fix|clarify|decline|defer`.
+- `ack_reference` (string, required): Reply URL or PR comment ID used for acknowledgement.
+- `ledger_row_ids` (array, required): Ledger row IDs covered by this thread.
 
 ---
 
