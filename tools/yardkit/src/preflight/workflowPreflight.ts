@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { access, readFile, readdir } from 'node:fs/promises';
+import { access, readFile, readdir, stat } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 
 export interface WorkflowPreflightOptions {
@@ -22,13 +22,16 @@ interface WorkflowPreflightReport {
 
 const WORKFLOW_COPY_GUIDANCE = [
 	'Remediation:',
-	'- Copy canonical templates into the repo root:',
-	'  cp -R templates/.kilocode ./.kilocode',
+	'- From the repo root, copy templates into the existing .kilocode folder:',
+	'  cp -R templates/.kilocode/workflows ./.kilocode/',
 	'- Re-run Yardkit after syncing workflows.',
 	'- If you intentionally customized workflows, re-apply changes after copying.',
 	'See docs/INSTALL.md Step 1 for context.',
 ].join('\n');
 
+/**
+ * Ensure repo-managed workflows match the canonical templates.
+ */
 export async function assertWorkflowsInSync(
 	options: WorkflowPreflightOptions,
 ): Promise<void> {
@@ -112,6 +115,10 @@ async function assertDirectoryExists(
 ): Promise<void> {
 	try {
 		await access(path);
+		const entry = await stat(path);
+		if (!entry.isDirectory()) {
+			throw new Error('Not a directory');
+		}
 	} catch {
 		throw new Error(`${message}\n${WORKFLOW_COPY_GUIDANCE}`);
 	}
@@ -160,7 +167,7 @@ async function listFilesRecursive(root: string): Promise<string[]> {
 		if (entry.isDirectory()) {
 			const nested = await listFilesRecursive(entryPath);
 			for (const nestedPath of nested) {
-				files.push(nestedPath);
+				files.push(join(entry.name, nestedPath));
 			}
 			continue;
 		}
