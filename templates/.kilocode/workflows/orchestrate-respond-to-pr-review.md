@@ -25,11 +25,15 @@ auto_execution_mode: 3
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
-**Key invariant:** no completion until **every review comment** appears in the ledger and is **acknowledged**.
+**Key invariant:** no completion until **every review thread** appears in the inventory, **every comment** appears in the ledger, and **every thread** is acknowledged.
 
-Ledger schema and template:
-- Canonical row schema: [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md#pr-review-ledger-row-object)
-- Template: [`.kilocode/contracts/pr_review/comment_ledger.md`](../contracts/pr_review/comment_ledger.md)
+Schemas and templates:
+- Ledger row schema: [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md#pr-review-ledger-row-object)
+- Thread inventory schema: [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md#pr-review-thread-inventory-object)
+- Ack matrix schema: [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md#pr-review-ack-matrix-object)
+- Ledger template: [`.kilocode/contracts/pr_review/comment_ledger.md`](../contracts/pr_review/comment_ledger.md)
+- Inventory template: [`.kilocode/contracts/pr_review/thread_inventory.md`](../contracts/pr_review/thread_inventory.md)
+- Ack matrix template: [`.kilocode/contracts/pr_review/ack_matrix.md`](../contracts/pr_review/ack_matrix.md)
 
 ---
 
@@ -59,7 +63,7 @@ update_todo_list(
 )
 ```
 
-### Step 2: Spawn Subtask A — Intake + Ledger
+### Step 2: Spawn Subtask A — Intake + Ledger + Thread Inventory
 
 ```python
 new_task(
@@ -67,7 +71,7 @@ new_task(
     message="""
 # Review Intake Subtask
 
-**Objective:** Fetch all review feedback and build the authoritative Comment Ledger.
+**Objective:** Fetch all review feedback, build the authoritative Comment Ledger, and build the GraphQL Thread Inventory.
 
 **PR Number:** <pr-number>
 
@@ -90,17 +94,57 @@ gh api repos/<OWNER>/<REPO>/pulls/<PR_NUMBER>/comments \
   --jq '.[] | {id, path, line, side, user: .user.login, body, created_at}'
 ```
 
-4) Categorize into: blocking / suggestion / question / nit / praise.
+4) Fetch thread inventory (GraphQL). Prefer `reviewThreads` in `gh pr view --json`, otherwise use GraphQL fallback:
+```bash
+gh pr view <PR_NUMBER> --json reviewThreads
+```
 
-5) Produce the **Comment Ledger** (MANDATORY):
+If `reviewThreads` is unsupported, use the GraphQL fallback:
+```bash
+gh api graphql -F owner='<OWNER>' -F name='<REPO>' -F number=<PR_NUMBER> -f query='
+  query($owner:String!, $name:String!, $number:Int!) {
+    repository(owner:$owner, name:$name) {
+      pullRequest(number:$number) {
+        reviewThreads(first: 100) {
+          nodes {
+            id
+            isResolved
+            comments(first: 100) {
+              nodes {
+                id
+                url
+                path
+                line
+                side
+                author { login }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+'
+```
+
+5) Categorize into: blocking / suggestion / question / nit / praise.
+
+6) Produce the **Thread Inventory** (MANDATORY):
+- One row per review thread
+- Include `thread_id`, `comment_url`, `comment_ids`
+- Schema must match [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md)
+
+7) Produce the **Comment Ledger** (MANDATORY):
 - One row per comment
 - Use stable row IDs `PRR-001`, `PRR-002`, ... (never renumber)
+- Include `thread_id` + `comment_url` for every review comment
 - Schema must match [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md)
 
 ## Output Requirements
 - runtime_model_reported (from environment_details)
 - runtime_mode_reported (mode slug)
 - PR metadata: owner/repo, pr_number, headRefName
+- Thread Inventory (JSON matching [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md))
 - Comment Ledger (table or JSON matching [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md))
 - Summary counts by category
 
@@ -198,7 +242,7 @@ new_task(
 )
 ```
 
-### Step 6: Spawn Subtask E — Acknowledge All Comments
+### Step 6: Spawn Subtask E — Acknowledge All Comments + Ack Matrix
 
 ```python
 new_task(
@@ -206,7 +250,7 @@ new_task(
     message="""
 # Comment Acknowledgement Subtask
 
-**Objective:** Ensure every ledger row is acknowledged publicly on the PR.
+**Objective:** Ensure every ledger row is acknowledged publicly on the PR and produce the Ack Matrix.
 
 ## Invariant
 - For each `type=review` ledger row: reply to the specific review comment by `comment_id`.
@@ -229,6 +273,7 @@ gh pr comment <PR_NUMBER> --body "<ack summary referencing ledger rows>"
 - counts acknowledged vs total
 - links/identifiers of posted replies
 - final ledger marked `acknowledged`
+- Ack Matrix (JSON matching [`docs/SCHEMAS.md`](../../../docs/SCHEMAS.md))
 
 ### Ledger Statuses (explicit)
 
