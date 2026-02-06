@@ -112,7 +112,6 @@ This document is the single authoritative schema reference for the Station Kit. 
 - `row_id` (string, required): Stable ID `PRR-001`, `PRR-002`, ...; **never renumber** between updates.
 - `type` (string, required): `review` (line-specific) or `conversation` (PR-level comment).
 - `comment_id` (string|null): Required for `type=review` (GitHub review comment ID).
-- `comment_id` (string|null): Required for `type=review` (GitHub review comment ID).
 - `thread_id` (string|null): Required for `type=review` (GitHub review thread ID).
 - `comment_url` (string|null): Required for `type=review` (URL of the specific comment).
 - `path` (string|null): Required for `type=review`.
