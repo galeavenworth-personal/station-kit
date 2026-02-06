@@ -1,7 +1,7 @@
 {
 	"name": "@station-kit/yardkit",
 	"version": "0.1.0",
-	"description": "Hybrid Supervisor - Deterministic control plane for multi-line agentic workflows",
+	"description": "Hybrid Supervisor - Deterministic control plane for multi-line agentic workflows (requires .kilocode/workflows in sync with templates/.kilocode/workflows)",
 	"type": "module",
 	"main": "dist/index.js",
 	"bin": {
